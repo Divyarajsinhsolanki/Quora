@@ -2,14 +2,14 @@ class TopicsController < ApplicationController
   # before_filter :authenticate_user!
 
   def new
-    @topic = Topic.new
   end
 
 
   def index
 
     @topics = current_user.topics
-        @topic = current_user.topics.find(param[:id]).destroy if params[:id].present?
+
+    @topic = Topic.new
 
   end
   
@@ -20,7 +20,7 @@ class TopicsController < ApplicationController
 
     if @topic.save
       flash[:success] = "successful"
-      redirect_to root_path(current_user)
+      redirect_to user_topics_path(current_user)
     else
       flash[:danger] = "Invalid"
     end 

@@ -1,3 +1,16 @@
+<h1>Add new Topics</h1>
+
+
+<%= form_with(model:  @topic, url: user_topics_path(current_user.id), local: true  ) do |f|%>
+
+ <%= f.label :name %> 
+ <%= f.text_field :name %>
+ <%= f.hidden_field :user_id, value: current_user.id %>
+ <%= f.submit "add topic" %>
+
+
+<% end %>
+
 <br><h1>Available topics</h1>
 <br>
 <% @topics.each do |t|  %>

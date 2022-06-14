@@ -8,7 +8,7 @@ class AnswersController < ApplicationController
 
     if @answer.save
        flash[:success] = "successful"
-      redirect_to user_questions_path
+      redirect_to user_question_path(current_user, @answer.question)
     else
       flash[:danger] = "Invalid"
       render "new"
@@ -28,7 +28,7 @@ class AnswersController < ApplicationController
 private
 
  def answer_params
-    params.require(:answer).permit(:answer, :questions_id, :user_id)
+    params.require(:answer).permit(:answer, :question_id, :user_id)
   end
 
 

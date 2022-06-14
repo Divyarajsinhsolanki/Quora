@@ -1,2 +1,14 @@
-<h1>StaticPages#help</h1>
-<p>Find me in app/views/static_pages/help.html.erb</p>
+<h1>My Answers</h1>
+
+	<table class="table">
+		<tr><th>Questions</th>
+<th>Answers</th>
+		</tr>
+<% @answers.each do |ans| %>
+<tr>
+<td>	<%= ans.question.question  %></td>
+<td>	<%= ans.answer %></td>
+
+<% end %>
+</tr>
+</table>

@@ -17,9 +17,10 @@
 
 
   <% if user_signed_in? %>
-    <%= link_to "Show questions",   user_questions_path(current_user.id) %>
-    <%= link_to "Add topic", new_user_topic_path(current_user.id) %>
-    <%= link_to "Show topics",   user_topics_path(current_user.id) %>
+    <%= link_to "Show my questions",   user_questions_path(current_user.id) %>
+    <%= link_to "Show my topics",   user_topics_path(current_user.id) %>
+<%= link_to "Show my answers",   static_pages_help_path(current_user.id) %>
+
     <%= link_to "Log OUT",   destroy_user_session_path, data: { "turbo-method": :delete }  %>
 
   <%#= link_to "Logout", destroy_user_session_path, method: :delete %>

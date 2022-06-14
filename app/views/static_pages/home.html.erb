@@ -1,14 +1,30 @@
-        <br>
-<% @topics.each do |t|  %>
-    <%= p "Topic:-" %> <%=  t.name %>
-      <br>
+ <h1>ALL QUESTIONS</h1>
 
-      	<%= p "question:-" %><%  @questions.each do |q|  %>
-			      <%= q.question %>
-			        
-<%#= form_with model: @answer , url%>
+<table class="table">
+    <thead>
+      <tr>
+        <th>Topics</th>
+             <th>Questions</th>
 
-			        <br>
-				<% end %>
+             <th>Answers</th>
+      </tr>
+    </thead>
+    <tbody>
+   
+<%  @questions_group_by_topic.each do |topic, questions|    %>
+ 
+      <tr> 
+        <td> <%=  topic.name %></td>
+  <td><% questions.each do |q| %>
+         <%= link_to q.question ,user_question_path(current_user, questions) %></td>
 
+            <% q.answers.each do |ans| %>
+            <td>
+              <%= ans.answer %>
+            </td>
+              <% end %>
+      </tr>
+      <% end %>
 <% end %>
+    </tbody>
+</table>
