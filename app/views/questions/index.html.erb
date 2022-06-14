@@ -1,0 +1,12 @@
+
+
+
+<br>    <%= link_to "Add question", new_user_question_path(current_user.id) %><br>
+
+
+
+
+<% @questions.each do |t|  %>
+      <%= link_to t.question, user_question_path( current_user, t) %>
+        <br>
+<% end %>

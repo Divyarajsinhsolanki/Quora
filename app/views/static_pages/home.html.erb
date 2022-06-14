@@ -1,0 +1,14 @@
+        <br>
+<% @topics.each do |t|  %>
+    <%= p "Topic:-" %> <%=  t.name %>
+      <br>
+
+      	<%= p "question:-" %><%  @questions.each do |q|  %>
+			      <%= q.question %>
+			        
+<%#= form_with model: @answer , url%>
+
+			        <br>
+				<% end %>
+
+<% end %>

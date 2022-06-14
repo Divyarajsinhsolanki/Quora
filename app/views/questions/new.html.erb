@@ -1,0 +1,13 @@
+<h1>Questions#new</h1>
+<p>Find me in app/views/questions/new.html.erb</p>
+
+
+<%= form_with(model: @question, url: user_questions_path(current_user),local: true ) do |f| %>
+<%= f.collection_select :topic_id, Topic.order(:name),:id,:name, include_blank: true %>
+
+<%= f.label :question %>
+<%= f.text_field :question %>
+<%= f.hidden_field :user_id, value: current_user.id %>
+
+<%= f.submit "add question" %>
+<% end %>
