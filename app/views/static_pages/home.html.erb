@@ -16,7 +16,7 @@
       <tr> 
         <td> <%=  topic.name %></td>
   <td><% questions.each do |q| %>
-         <%= link_to q.question ,user_question_path(current_user, questions) %></td>
+         <%= link_to q.question ,static_pages_contact_path(user_id: current_user.id, id: q.id ) %></td>
 
             <% q.answers.each do |ans| %>
             <td>

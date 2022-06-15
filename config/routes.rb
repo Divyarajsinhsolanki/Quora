@@ -1,6 +1,12 @@
 Rails.application.routes.draw do
+  get 'profile/index'
+  get 'profile/show'
 
-devise_for :users 
+  devise_for :users 
+ #devise_for :users, controllers: {
+ #        sessions: 'users/sessions'
+ #      }
+
 
   root 'static_pages#home'
   get 'static_pages/help'

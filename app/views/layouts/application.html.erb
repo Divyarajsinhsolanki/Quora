@@ -11,7 +11,7 @@
   </head>
 
   <body>
-    <header class="navbar navbar-fixed-top navbar-inverse">
+    <header class="navbar navbar-fixed-top navbar-inverse  bg-dark" style="background-color: black;">
       <div class="container">
     <%= link_to "home", root_path %>
 
@@ -21,6 +21,8 @@
     <%= link_to "Show my topics",   user_topics_path(current_user.id) %>
 <%= link_to "Show my answers",   static_pages_help_path(current_user.id) %>
 
+    <%= link_to "Profile",   profile_show_path(id: current_user.id)  %>
+        <%= link_to "Users",   profile_index_path  %>
     <%= link_to "Log OUT",   destroy_user_session_path, data: { "turbo-method": :delete }  %>
 
   <%#= link_to "Logout", destroy_user_session_path, method: :delete %>
@@ -42,13 +44,16 @@
     <% if alert %>
       <p class="alert alert-danger"><%= alert %></p>
     <% end %>
+
     <%= yield %>
     <br>
     <br>
-  
+  <footer class="navbar navbar-fixed-bottom navbar-inverse  bg-dark">
+    
     <%= link_to "help", static_pages_help_path %>
 
     <%= link_to "about", static_pages_about_path %>
+  </footer>
 
   </body>
 </html>
