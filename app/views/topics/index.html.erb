@@ -14,7 +14,7 @@
 <br><h1>Available topics</h1>
 <br>
 <% @topics.each do |t|  %>
-      <%= t.name %>
+      <%= link_to t.name, user_topic_path(user_id: current_user,id: t.id) %>
         <br>
  <%#= link_to "Delete Topic", user_topic_path( user_id:  current_user.id,id: @topic.id ), method: :delete , remote: true%>
 

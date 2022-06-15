@@ -1,0 +1,2 @@
+module TopicRelationshipsHelper
+end

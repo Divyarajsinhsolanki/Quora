@@ -1,60 +1,34 @@
 Rails.application.routes.draw do
-  get 'profile/index'
-  get 'profile/show'
-
-  devise_for :users 
- #devise_for :users, controllers: {
- #        sessions: 'users/sessions'
- #      }
-
+ 
+devise_for :users 
 
   root 'static_pages#home'
+  get 'profile/index'
+  get 'profile/show'
   get 'static_pages/help'
   get 'static_pages/about'
   get 'static_pages/contact'
  
-
   resources :users do
     resources :topics  
     resources :questions
   end
     
-
   resources :users do
     resources :questions do
-    resources :answers
+      resources :answers
     end
   end
 
+  resources :users do
+    member do
+      get :following, :followers
+      get :followingtopic, :followersoftopic
+    end
+  end
 
-# devise_for :users, path: 'auth', path_names: { sign_in: 'login', sign_out: 'logout', password: 'secret', confirmation: 'verification', unlock: 'unblock', registration: 'register', sign_up: 'cmon_let_me_in' }
+ 
+  resources :topic_relations, only: [:create, :destroy]
+  resources :relationships,   only: [:create, :destroy]
 
-# devise_scope :user do
-#   get 'sign_in', to: 'devise/sessions#new'
-  
-#   end
-# devise_for :users, skip: :all
-
-# devise_for :users do
-#   get '/users/sign_out' => 'devise/sessions#destroy'
-# end
-# devise_for :users, path: 'auth', path_names: { sign_in: 'login', sign_out: 'logout', password: 'secret', confirmation: 'verification', unlock: 'unblock', registration: 'register', sign_up: 'cmon_let_me_in' }  
-
-  # devise_for :users, controller: 
-  #   {
-  #     sessions: 'users/sessions'  
-  #   }
-
-  # devise_scope :user do
-  #   get "users", to: "devise/sessions#new"
-  #   get '/users/sign_out' => 'devise/sessions#destroy'
-  # end
-  
- # devise_scope :user do
- #    get "users", to: "devise/sessions#new"
- #  end
-  
-  # devise_for :users
-  
-
- end
+end

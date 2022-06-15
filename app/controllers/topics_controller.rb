@@ -6,11 +6,8 @@ class TopicsController < ApplicationController
 
 
   def index
-
     @topics = current_user.topics
-
     @topic = Topic.new
-
   end
   
 
@@ -27,12 +24,16 @@ class TopicsController < ApplicationController
   end
 
   def destroy
-    @topic = current_user.topics.find(param[:id]).destroy 
+    @topic = current_user.topics.find(params[:id]).destroy 
     redirect_to user_topics_path
   end
 
   def show
-   
+
+   @topic = Topic.find(params[:id])
+   @questions = Question.where(topic_id: @topic.id)
+   @user = current_user
+
   end
 
 private

@@ -18,7 +18,7 @@
 
   <% if user_signed_in? %>
     <%= link_to "Show my questions",   user_questions_path(current_user.id) %>
-    <%= link_to "Show my topics",   user_topics_path(current_user.id) %>
+    <%= link_to "Show all topics",   user_topics_path(current_user.id) %>
 <%= link_to "Show my answers",   static_pages_help_path(current_user.id) %>
 
     <%= link_to "Profile",   profile_show_path(id: current_user.id)  %>
@@ -50,7 +50,6 @@
     <br>
   <footer class="navbar navbar-fixed-bottom navbar-inverse  bg-dark">
     
-    <%= link_to "help", static_pages_help_path %>
 
     <%= link_to "about", static_pages_about_path %>
   </footer>
