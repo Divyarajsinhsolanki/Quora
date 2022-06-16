@@ -10,7 +10,7 @@ gem "rails", "~> 7.0.3"
 gem "sprockets-rails"
 
 
-
+gem "will_paginate"
 gem "devise"
 gem 'devise-bootstrap-views'
 

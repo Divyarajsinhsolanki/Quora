@@ -3,18 +3,16 @@
 
 <table class="table">
     <thead>
+<%  @questions_group_by_topic.each do |topic, questions|    %>
       <tr>
         <th>Topics</th>
              <th>Questions</th>
 
-             <th>Answers</th>
       </tr>
     </thead>
     <tbody>
 
-<%  @questions_group_by_topic.each do |topic, questions|    %>
    
- 
       <tr>  
 
         <td> <%= link_to topic.name, user_topic_path(user_id: current_user.id,id: topic.id ) %></td>
@@ -22,18 +20,29 @@
   <td class=".question">
          <%= link_to q.question ,static_pages_contact_path(user_id: current_user.id, id: q.id ) %></td>
 
-            <% q.answers.each do |ans| %>
-            <td>
-              <%= ans.answer %>
-            </td>
-              <% end %>
       </tr>
+<tr>  
+             <th>Answers :-</th>
+
+            <% q.answers.order(created_at: :desc).each do |ans| %>
+            <td>  <%= ans.answer %></td>
+</tr>
+              <% end %>
+
       <% end %>
 <% end %>
 
 
     </tbody>
 </table>
+
+
+
+
+
+
+
+
 <% else %>
  <h1>ALL QUESTIONS</h1>
 

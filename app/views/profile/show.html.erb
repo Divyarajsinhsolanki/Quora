@@ -1,5 +1,11 @@
 <h1>Profile</h1>
 
+<image src="<%(url_for(@user.avatar))%>">
+<% if @user.avatar.attached? %>
+<%else%>
+<p>No profile image</p>
+<% end %>
+
 <%= @user.email %>
 <br>
 <p>Following
