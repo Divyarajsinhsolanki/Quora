@@ -1,4 +1,5 @@
 class QuestionsController < ApplicationController
+#  before_action :authenticate_user!
 
   def new
   @question =  Question.new
@@ -19,6 +20,8 @@ class QuestionsController < ApplicationController
     @question = current_user.questions.find(params[:id])
     @answer = Answer.new
     @answers = @question.answers
+    # @topic  =  @question.topic
+    # @user =  
   end
 
   def index

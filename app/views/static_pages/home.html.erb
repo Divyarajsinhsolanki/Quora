@@ -1,3 +1,4 @@
+       <% if user_signed_in? %>
  <h1>ALL QUESTIONS</h1>
 
 <table class="table">
@@ -10,11 +11,13 @@
       </tr>
     </thead>
     <tbody>
-   
+
 <%  @questions_group_by_topic.each do |topic, questions|    %>
+   
  
-      <tr> 
-        <td> <%=  topic.name %></td>
+      <tr>  
+
+        <td> <%= link_to topic.name, user_topic_path(user_id: current_user.id,id: topic.id ) %></td>
     <% questions.each do |q| %>
   <td class=".question">
          <%= link_to q.question ,static_pages_contact_path(user_id: current_user.id, id: q.id ) %></td>
@@ -27,5 +30,43 @@
       </tr>
       <% end %>
 <% end %>
+
+
     </tbody>
 </table>
+<% else %>
+ <h1>ALL QUESTIONS</h1>
+
+<table class="table ">
+    <thead>
+      <tr>
+        <th>Topics</th>
+             <th>Questions</th>
+
+             <th>Answers</th>
+      </tr>
+    </thead>
+    <tbody>
+
+<%  @questions_group_by_topic.each do |topic, questions|    %>
+   
+ 
+      <tr> 
+        <td> <%=  topic.name %></td>
+    <% questions.each do |q| %>
+  <td class=".question">
+         <%=  q.question  %></td>
+
+            <% q.answers.each do |ans| %>
+            <td>
+              <%= ans.answer %>
+            </td>
+              <% end %>
+      </tr>
+      <% end %>
+<% end %>
+
+
+    </tbody>
+</table>
+<% end %>

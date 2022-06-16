@@ -4,6 +4,10 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  validates :email, presence: true, length: { minimum: 2, maximum: 50 }      
+  validates :password, presence: true, length: { minimum: 6 }
+
+
   has_many :topics , dependent: :destroy
   has_many :questions, dependent: :destroy
   has_many :answers, dependent: :destroy
@@ -26,14 +30,12 @@ class User < ApplicationRecord
   has_many :followingtopic, through: :active_relationships_topic, source: :topic_added
   
 
-has_many :passive_relationships_topic, class_name: "TopicRelation", foreign_key: "topic_added_id", dependent: :destroy
-  has_many :followersoftopic, through: :passive_relationships_topic, source: :follower_topic
+
 
 
 
 
   def followt(topic)
-    puts "l============================="
     followingtopic << topic
   end
  
@@ -47,8 +49,6 @@ has_many :passive_relationships_topic, class_name: "TopicRelation", foreign_key:
 
 
   def follow(other_user)
-    puts "l============================="
-
     following << other_user
   end
  

@@ -1,2 +1,34 @@
-<h1>StaticPages#about</h1>
-<p>Find me in app/views/static_pages/about.html.erb</p>
+ <h1>ALL QUESTIONS</h1>
+
+<table class="table ">
+    <thead>
+      <tr>
+        <th>Topics</th>
+             <th>Questions</th>
+
+             <th>Answers</th>
+      </tr>
+    </thead>
+    <tbody>
+
+<%  @questions_group_by_topic.each do |topic, questions|    %>
+   
+ 
+      <tr> 
+        <td> <%=  topic.name %></td>
+    <% questions.each do |q| %>
+  <td class=".question">
+         <%=  q.question  %></td>
+
+            <% q.answers.each do |ans| %>
+            <td>
+              <%= ans.answer %>
+            </td>
+              <% end %>
+      </tr>
+      <% end %>
+<% end %>
+
+
+    </tbody>
+</table>

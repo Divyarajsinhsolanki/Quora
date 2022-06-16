@@ -1,6 +1,12 @@
 <br><br><%= @question.question %>
 <br>
 
+
+
+
+<!-- <h1>Topic:- -->
+<%#= @topic.name %>
+</h1>
 <% @answers.each do |ans| %>
 <br><br>
 <%=  ans.answer %>
@@ -8,10 +14,12 @@
 <br><br>
 <%= form_with(model: @answer, url: user_question_answers_path(current_user.id,question_id: @question.id),remote: true ) do |f| %>
 
+
+
 <%= f.label :answer %>
 <%= f.text_field :answer %>
 <%= f.hidden_field :user_id, value: current_user.id %>
 <%= f.hidden_field :question_id,  value: @question.id %>
-<%= f.submit "add question" %>
+<%= f.submit "add answer" %>
 
 <% end %>

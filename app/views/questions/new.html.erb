@@ -1,6 +1,4 @@
-<h1>Questions#new</h1>
-<p>Find me in app/views/questions/new.html.erb</p>
-
+<h1>Ask Questions</h1>
 
 <%= form_with(model: @question, url: user_questions_path(current_user),local: true ) do |f| %>
 <%= f.collection_select :topic_id, Topic.order(:name),:id,:name %>

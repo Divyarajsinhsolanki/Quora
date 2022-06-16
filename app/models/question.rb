@@ -3,4 +3,9 @@ class Question < ApplicationRecord
   belongs_to :topic
 has_many :answers, dependent: :destroy
 
+validates :question, presence: true, uniqueness: { case_sensitive: false },
+   length: {minimum: 6,maximum: 50}
+   
+
+
 end

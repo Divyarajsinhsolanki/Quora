@@ -5,12 +5,12 @@
 
 
 
-<p>Following
+<p>Your Total Following topics:
   <%=  @user.followingtopic.count %>
 </p>
 
-<p>Followers
-  <%=  @user.followersoftopic.count %>
+<p>Total Followers of topic:
+  <%=  @topic.followersoftopic.count %>
 </p>        
 <% if current_user.followingtopic?(@topic) %>
 
