@@ -10,12 +10,20 @@ gem "rails", "~> 7.0.3"
 gem "sprockets-rails"
 
 
+
 gem "will_paginate"
+
 gem "devise"
+
 gem 'devise-bootstrap-views'
 
-# gem 'bootstrap-sass'
+gem 'kaminari'
 
+gem 'jquery-rails'
+
+# gem 'turbolinks_render'
+
+# gem 'bootstrap-sass'
 
 # Use postgresql as the database for Active Record
 gem "pg", "~> 1.1"
@@ -27,7 +35,6 @@ gem "puma", "~> 5.0"
 gem "importmap-rails"
 
 # Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
-gem "turbo-rails"
 
 # Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
 gem "stimulus-rails"

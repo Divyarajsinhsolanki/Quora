@@ -1,45 +1,47 @@
        <% if user_signed_in? %>
- <h1>ALL QUESTIONS</h1>
 
-<table class="table">
-    <thead>
 <%  @questions_group_by_topic.each do |topic, questions|    %>
-      <tr>
-        <th>Topics</th>
-             <th>Questions</th>
 
-      </tr>
-    </thead>
-    <tbody>
-
-   
-      <tr>  
-
-        <td> <%= link_to topic.name, user_topic_path(user_id: current_user.id,id: topic.id ) %></td>
+<div class="card" style="margin:25px ;">
+  <h5 class="card-header" style="text-align: left;">
+       =>   <%= link_to topic.name, user_topic_path(user_id: current_user.id,id: topic.id ) %>
+  </h5>
     <% questions.each do |q| %>
-  <td class=".question">
-         <%= link_to q.question ,static_pages_contact_path(user_id: current_user.id, id: q.id ) %></td>
+  <div class="card-body">
+    <h5 class="card-title">
 
-      </tr>
-<tr>  
-             <th>Answers :-</th>
+      Q. <%= link_to q.question ,static_pages_contact_path(user_id: current_user.id, id: q.id ) %>
+      <hr>
+    </td>
+    </h5>
+      <% if q.answers.any?  %>
+    <p class="card-text">
+    <%= q.answers.last.answer %>
+                   <p style="color: gray; text-align: right;"> 
+                  <% if @user.find(q.answers.last.user_id).avatar.attached? %>
+              <%= image_tag @user.find(q.answers.last.user_id).avatar, style: "width:30px; height:30px;" %>
+                <% end %>
+                              <%= @user.find(q.answers.last.user_id).firstname %>
+             <br> Posted <%= time_ago_in_words(q.answers.last.created_at) %> ago. 
+           </p>
+         </p>
+      <%= link_to "View more answers",static_pages_contact_path(user_id: current_user.id, id: q.id ),class: "btn btn-primary" %>
 
-            <% q.answers.order(created_at: :desc).each do |ans| %>
-            <td>  <%= ans.answer %></td>
-</tr>
-              <% end %>
+    <% else %>
+      <p>No one has answered yet</p>
+      <%= link_to "Give answer",static_pages_contact_path(user_id: current_user.id, id: q.id )%>
+    <% end %>
 
+ 
+
+
+  </div>
+
+      <hr><hr>
       <% end %>
+</div>
+
 <% end %>
-
-
-    </tbody>
-</table>
-
-
-
-
-
 
 
 

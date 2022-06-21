@@ -1,0 +1,12 @@
+<h1>Questions</h1>
+
+<% @questions.each do |t|  %>
+      
+     <p>Topic:- <%= Topic.find(t.topic_id).name %>
+   
+</p><p>Question:-
+      <%= link_to t.question, static_pages_contact_path(user_id: current_user.id, id: t.id ) %>
+</p>
+        <br>
+
+<% end %>

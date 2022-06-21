@@ -2,30 +2,34 @@ class QuestionsController < ApplicationController
 #  before_action :authenticate_user!
 
   def new
-  @question =  Question.new
   end
 
   def create
 
     @question =  Question.new(question_params)
+          @questions = current_user.questions
 
     if  @question.save
-        redirect_to user_questions_path
+      respond_to do |format|
+        format.html
+        format.js      
+      end
     else
-      render 'new'
+      flash[:danger] = "Invalid"
+      redirect_to user_questions_path
     end
   end
 
   def show 
-    @question = current_user.questions.find(params[:id])
+    @question = Question.find(params[:id])
     @answer = Answer.new
     @answers = @question.answers
-    # @topic  =  @question.topic
-    # @user =  
   end
 
   def index
+  @question =  Question.new
     @questions = current_user.questions
+  
   end
 
   def edit

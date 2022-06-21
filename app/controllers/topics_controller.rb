@@ -4,23 +4,21 @@ class TopicsController < ApplicationController
   def new
   end
 
-
   def index
     @topics = Topic.all
     @topic = Topic.new
   end
-  
-
 
   def create
       @topic = Topic.new(topic_params)
-
-    if @topic.save
-      flash[:success] = "successful"
-      redirect_to user_topics_path(current_user)
-    else
-      flash[:danger] = "Invalid"
-    end 
+      @topics = Topic.all
+  
+      if @topic.save
+      respond_to do |format|
+        format.html
+        format.js      
+      end
+    end
   end
 
   def destroy
@@ -29,11 +27,9 @@ class TopicsController < ApplicationController
   end
 
   def show
-
-   @topic = Topic.find(params[:id])
-   @questions = Question.where(topic_id: @topic.id)
-   @user = current_user
-
+    @topic     = Topic.find(params[:id])
+    @questions = Question.where(topic_id: @topic.id)
+    @user      = current_user
   end
 
 private

@@ -4,7 +4,7 @@ class Question < ApplicationRecord
 has_many :answers, dependent: :destroy
 
 validates :question, presence: true, uniqueness: { case_sensitive: false },
-   length: {minimum: 2,maximum: 50}
+   length: {minimum: 2,maximum: 150}
    
 
 

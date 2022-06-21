@@ -1,37 +1,57 @@
-<h1>Profile</h1>
 
-<image src="<%(url_for(@user.avatar))%>">
-<% if @user.avatar.attached? %>
-<%else%>
-<p>No profile image</p>
-<% end %>
 
-<%= @user.email %>
-<br>
-<p>Following
-	<%=  @user.following.count %>
-</p>
+<section class="vh-100" >
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col col-md-9 col-lg-7 col-xl-5">
+        <div class="card" style="border-radius: 15px;">
+          <div class="card-body p-4">
+            <div class="d-flex text-black">
+              <div class="flex-shrink-0">
+                
+              	
+              	<% if @user.avatar.attached? %>
+								 <%= image_tag @user.avatar,style: "width:150px;",class: "img-fluid" %>
+								<%else%>
+									<p>No profile image</p>
+								<% end %>
 
-<p>Followers
-	<%=  @user.followers.count %>
-</p>
+              </div>
 
-<% if current_user.id == @user.id %>
 
-<% else %>
-	<% if current_user.following?(@user) %>
 
-			<%= form_with(model: current_user.active_relationships.find_by(followed_id: @user.id),
-			html: { method: :delete }, local: true) do |f| %>
 
-		<%= f.submit "Unfollow", class: "btn" %>
+              <div class="flex-grow-1 ms-3">
+                <h5 class="mb-1"><p> Firstname:-			<%= @user.firstname %></p>
+										<p>Lastname:-			<%= @user.name %></p>
+									</h5>
+                <p class="mb-2 pb-1" style="color: #2b2a2a;"><%= @user.email %></p>
+                <div class="d-flex justify-content-start rounded-3 p-2 mb-2"
+                  style="background-color: #efefef;">
+   
+                  <div class="px-3"><p>Following
+			<%=  @user.following.count %>
+			</p>
+                  </div>
+                  <div>	
+                  <%= render 'shared/followers' %>
+
+                  </div>
+                </div>
+                <div class="d-flex pt-1">
+		<% if current_user.id == @user.id %>
+	
+    <%#= link_to "Edit profile",   edit_user_path(current_user)   %>
+		<% else %>
+					<%= render 'shared/followform' %>
+
 		<% end %>
-	<% else %>
-		
-			<%= form_with(model: current_user.active_relationships.build, local: true) do |f| %>
-			<div><%= hidden_field_tag :followed_id, @user.id %></div>
-		
-		<%= f.submit "Follow", class: "btn btn-primary" %>
-		<% end %>
-	<% end %>
-<% end %>
+		                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

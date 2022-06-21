@@ -7,13 +7,16 @@ class AnswersController < ApplicationController
 
   def create
     @answer = Answer.new(answer_params)
+    @question = Question.find(@answer.question_id)
+    @answers  =  @question.answers 
+    @user =  User.find(@question.user_id)
+    @topic =  Topic.find(@question.topic_id)
 
     if @answer.save
-       flash[:success] = "successful"
-      redirect_to user_question_path(current_user, @answer.question)
-    else
-      flash[:danger] = "Invalid"
-      render "new"
+      respond_to do |format|
+        format.html 
+        format.js 
+      end
     end 
   end
 

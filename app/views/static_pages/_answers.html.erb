@@ -1,0 +1,15 @@
+<div id="allanswers">
+
+	<% a=1 %>
+
+<% @answers.order(created_at: :desc).each do |ans| %>
+	<br><br>
+<table>
+	<tr>
+			<td style="width:150px;"><h4> Answer <%= a %>:-</h4></td><td><h5> <%=  ans.answer %></h5></td>
+			<% a += 1 %>
+			<br>
+		</tr>
+		<% end %>
+</table>
+</div>

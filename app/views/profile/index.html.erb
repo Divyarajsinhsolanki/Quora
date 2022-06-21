@@ -1,7 +1,38 @@
-<h1>All Users</h1>
+		
 
+	<div class="container" style="margin:20px; " >
+
+	   <div class="row">
 <% @users.each do |user| %>
-<br>
-<%= link_to user.email , profile_show_path(id: user.id) %>
+	   <div class="col-xs-4" style="margin:20px;">
+	   	
+	   <div class="card" style="width:330px; height: 400px;">
+	
+	  
+	    <p class="card-img-top"style="width:100%; height:170px	 ; ">
+			<% if user.avatar.attached? %>
+				<%= image_tag user.avatar,style: "width:150px; height:150px;" %>
+			<% else %>
+					<p>No profile image</p>
+			<% end %></p>
+	  
+	    <div class="card-body">
+	      <h4 class="card-title">
+			 Firstname:-		<%= user.firstname %></p>
+				Lastname:- 		<%= user.name %></p>
+	      </h4>
+	      <p class="card-text">
 
+			<%= link_to user.email , profile_show_path(id: user.id) %>
+		  <br>Following			<%=  user.following.count %>
+				  Followers			<%=  user.followers.count %>
+	       </p>
+	      <%= link_to "See Profile", profile_show_path(id: user.id) ,class: "btn btn-primary"%>
+
+	    </div>
+	  </div>
+	   </div>
 <% end %>
+	
+</div>
+</div>

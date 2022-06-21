@@ -1,0 +1,16 @@
+
+            <% q.answers.order(created_at: :desc).each do |ans| %>
+    <p class="card-text">
+              <%= ans.answer %>
+        <p style="color: gray; text-align: right;"> 
+                  <% if @user.find(ans.user_id).avatar.attached? %>
+              <%= image_tag @user.find(ans.user_id).avatar, style: "width:30px; height:30px;" %>
+                <% end %>
+                              <%= @user.find(ans.user_id).firstname %>
+             <br> Posted <%= time_ago_in_words(ans.created_at) %> ago. 
+
+           </p>
+    <a href="#" class="btn btn-primary">View more answers</a>
+         </p>
+         
+              <% end %>
