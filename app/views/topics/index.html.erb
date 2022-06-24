@@ -1,6 +1,6 @@
 <h1>Add new Topics</h1>
 
-<%= form_for @topic , url: user_topics_path, remote: true do |f| %>
+<%= form_for @topic , url: topics_path, remote: true do |f| %>
 <%#= form_with(model:  @topic, url: user_topics_path(current_user.id)  ) do |f|%>
 
  <%= f.label :name %> 

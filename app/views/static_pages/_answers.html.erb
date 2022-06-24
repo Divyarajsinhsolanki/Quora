@@ -1,15 +1,42 @@
 <div id="allanswers">
-
 	<% a=1 %>
-
 <% @answers.order(created_at: :desc).each do |ans| %>
-	<br><br>
-<table>
-	<tr>
-			<td style="width:150px;"><h4> Answer <%= a %>:-</h4></td><td><h5> <%=  ans.answer %></h5></td>
-			<% a += 1 %>
-			<br>
-		</tr>
+
+
+
+
+
+
+<div >
+  <div class="card-body ">
+    <h5 class="card-title">
+				</h5>
+				  <p class="card-text">
+
+<div class="row">
+	<div class="col-1.1">
+<h5 style="text-align:left;">Answer	<%= a %>.</h5> </div>
+<div class="col">
+									<h5 style="text-align:left;"><%=  ans.answer.html_safe %></h5>
+									</div>
+						<% a += 1 %>				  
+				  </div>
+
+				  </p>
+				  <p class="card-text"><small class="text-muted">
+
+				  <p style="color: gray; text-align: right;"> 
+				          <% if User.find(ans.user_id).avatar.attached? %>
+				            <%= image_tag User.find(ans.user_id).avatar, style: "width:30px; height:30px;" %>
+                	<% end %>
+                              <%= User.find(ans.user_id).firstname %>
+             <br> Posted <%= time_ago_in_words(ans.created_at) %> ago. 
+           </p>
+         
+    	</small></p>
+  	</div>
+	</div>
 		<% end %>
-</table>
+
+
 </div>

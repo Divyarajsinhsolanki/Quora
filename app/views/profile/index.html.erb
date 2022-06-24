@@ -23,11 +23,11 @@
 	      </h4>
 	      <p class="card-text">
 
-			<%= link_to user.email , profile_show_path(id: user.id) %>
+			<%= link_to user.email , profile_path(id: user.id) %>
 		  <br>Following			<%=  user.following.count %>
 				  Followers			<%=  user.followers.count %>
 	       </p>
-	      <%= link_to "See Profile", profile_show_path(id: user.id) ,class: "btn btn-primary"%>
+	      <%= link_to "See Profile", profile_path(id: user.id) ,class: "btn btn-primary"%>
 
 	    </div>
 	  </div>

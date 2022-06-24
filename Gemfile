@@ -10,8 +10,14 @@ gem "rails", "~> 7.0.3"
 gem "sprockets-rails"
 
 
+gem 'ckeditor', github: 'galetahub/ckeditor'
 
-gem "will_paginate"
+gem "mini_magick"
+gem 'image_processing'
+
+
+gem 'will_paginate-bootstrap'
+# gem "will_paginate"
 
 gem "devise"
 

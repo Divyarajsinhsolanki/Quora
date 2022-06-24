@@ -1,12 +1,23 @@
 <h1>Questions</h1>
 
+<div class="card bg-light mb-3" >
 <% @questions.each do |t|  %>
       
+  <div class="card-header" style="border-top-color:  black;">
      <p>Topic:- <%= Topic.find(t.topic_id).name %>
+  </div>
+  <div class="card-body">
    
+    <h5 class="card-title">
 </p><p>Question:-
-      <%= link_to t.question, static_pages_contact_path(user_id: current_user.id, id: t.id ) %>
+      <%= link_to t.question, question_path( id: t.id ) %>
 </p>
-        <br>
+  </h5>
+    <p class="card-text"></p>
+    
 
+  </div>
 <% end %>
+
+
+  

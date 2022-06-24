@@ -17,10 +17,14 @@ class AnswersController < ApplicationController
         format.html 
         format.js 
       end
-    end 
+    else
+      flash[:danger] = "Invalid input"    
+    end
   end
 
   def index
+    @answers = current_user.answers
+  
   end
 
   def edit

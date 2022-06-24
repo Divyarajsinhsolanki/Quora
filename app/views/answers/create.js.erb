@@ -1,2 +1,4 @@
 $("#allanswers").html("<%= escape_javascript(render	('static_pages/answers')) %>");
-
+$("#new_answer").bind("ajax:complete", function(event,xhr,status){
+   $('#answer_answer').val('');
+ })

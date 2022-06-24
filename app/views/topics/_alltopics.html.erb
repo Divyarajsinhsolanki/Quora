@@ -1,9 +1,14 @@
-<div id="topicsss">
+      <div id="topicsss">
 <br><h1>Available topics</h1>
 <br>
 
+<%#= paginate @topics %>
 <% @topics.each do |t|  %>
-
-      <%= link_to t.name, user_topic_path(user_id: current_user,id: t.id) %>    <br>
+      <%= link_to t.name, topic_path(id: t.id) %><br>
 
 <% end %>
+<div style="text-align:center;">
+<p >  <div   class="digg_pagination" style="padding-left: 40%; background-color: #d6cbd3  ;">
+<%= will_paginate @topics %></p></div>
+      
+</div>

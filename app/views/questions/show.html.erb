@@ -1,25 +1,96 @@
-<br><br><%= @question.question %>
+       <% if user_signed_in? %>
+
 <br>
+<div class="card bg-secondary text-white" style="margin-left: 15px; margin-right: 15px; padding-top: 10px; ">
+<table style="width:100%;">
+  <td>
+  <h1>User - <%= link_to @user.email, profile_path(id: @user) %></h1>
+  </td><td>
+  <p>Following:
+    <%=  @user.following.count %>
+  </p>
+
+<%= render 'shared/followers' %>
+  </td><td>
+  <% if current_user.id == @user.id %>
+  <% else %>
+    <%= render 'shared/followform' %>
+  <% end %>
+
+  </td>
+  </tr>   <tr>
+
+    <td><br><h2>Topic:-<%= link_to @topic.name, topic_path(id: @topic.id ) %></h2></td>
+
+    <td> <%= render 'shared/tfollowers' %>     </td>
+   
+    <td> <%= render 'shared/tfollowbutton' %> </td>
+  
+  </tr>
+</table>
+</div>
 
 
 
+<div class="card border-secondary mb-3" style="margin:30px;">
+  <div class="card-header">
 
-<!-- <h1>Topic:- -->
-<%#= @topic.name %>
-</h1>
-<% @answers.each do |ans| %>
-<br><br>
-<%=  ans.answer %>
-<% end %>
-<br><br>
-<%= form_with(model: @answer, url: user_question_answers_path(current_user.id,question_id: @question.id),remote: true ) do |f| %>
+  <h2>Question:
+    <%= @question.question %>
+    <br> </h2>
+
+  </div>
+  <div class="card-body ">
+    <h5 class="card-title">
+
+  <%= render 'static_pages/answers' %>
+
+<br>
+    </h5>
+      <p class="card-text">
+
+  <%= form_for @answer, url: answers_path( question_id: @question.id),remote: true  do |f| %>
+      <%#= f.cktext_area :answer, as: :ckeditor, input_html: { ckeditor: { filebrowserImageBrowseUrl: '/ckeditor/pictures', filebrowserImageUploadUrl: '/ckeditor/pictures' } } %>
+
+<%= render 'layouts/error_messages', object: f.object %>  
+      
+
+    <%= f.cktext_area  :answer, ckeditor: {toolbar: 'Full'} %> 
+    <%= f.hidden_field :user_id, value: current_user.id %>
+    <%= f.hidden_field :question_id,  value: @question.id %>
+    <div style="margin:15px; " > <%= f.submit "add answer", class: "btn btn-info" %>
+
+  <% end %>
+      </p>
+  </div>
+
+                                                  <% else %>
 
 
+<hr><table style="width:100%;">
+  <tr><td>
+  <h1>User - <%= link_to @user.email, profile_path(id: @user) %></h1>
+  </td>
+  <td>
+  
+  </td>
+  </tr>   <tr><hr>
+    <td>
+      <br>
+      <h2>Topic:-<%=  @topic.name %></h2>
+    </td>
+    
+  </tr>
+</table>
 
-<%= f.label :answer %>
-<%= f.text_field :answer %>
-<%= f.hidden_field :user_id, value: current_user.id %>
-<%= f.hidden_field :question_id,  value: @question.id %>
-<%= f.submit "add answer" %>
+  <hr><hr>
+  <h2>Question:
+    <%= @question.question %>
+    <br>
+  </h2>
+
+  <%= render 'static_pages/answers' %>
+<br>
+<p></p>
 
 <% end %>

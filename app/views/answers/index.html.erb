@@ -1,3 +1,19 @@
-<h1>Answers#index</h1>
-<p>Find me in app/views/answers/index.html.erb</p>
+<% if  @answers.any? %>
+	<h1>My Answers</h1>
 
+		<table class="table">
+			<tr><th>Questions</th>
+	<th>Answers</th>
+			</tr>
+	<% @answers.each do |ans| %>
+	<tr>
+	<td>	<%= ans.question.question  %></td>
+	<td>	<%= ans.answer.html_safe %></td>
+
+	<% end %>
+	</tr>
+	</table>
+<% else %>
+	<br>
+	<h4>You haven't given any answer yet</h4>
+<% end %>
