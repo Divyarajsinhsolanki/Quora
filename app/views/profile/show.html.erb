@@ -1,7 +1,6 @@
        <% if user_signed_in? %>
 
 
-<section class="vh-100" >
   <div class="container py-5 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col col-md-9 col-lg-7 col-xl-5">
@@ -19,13 +18,13 @@
 
               </div>
 
-
-
-
               <div class="flex-grow-1 ms-3">
                 <h5 class="mb-1"><p> Firstname:-			<%= @user.firstname %></p>
 										<p>Lastname:-			<%= @user.name %></p>
-									</h5>
+                    <% if current_user.stripe_id.present? %>
+                    <p>Active plan :-<%= Stripe::Subscription.list(customer: current_user.stripe_id).data.first.plan.id %></p>
+                          <% end %>  
+                   </h5>
                 <p class="mb-2 pb-1" style="color: #2b2a2a;"><%= @user.email %></p>
                 <div class="d-flex justify-content-start rounded-3 p-2 mb-2"
                   style="background-color: #efefef;">
@@ -59,12 +58,7 @@
       </div>
     </div>
   </div>
-</section>
-
-
 <% else %>
-
-<section class="vh-100" >
   <div class="container py-5 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col col-md-9 col-lg-7 col-xl-5">
@@ -81,9 +75,6 @@
                 <% end %>
 
               </div>
-
-
-
 
               <div class="flex-grow-1 ms-3">
                 <h5 class="mb-1"><p> Firstname:-      <%= @user.firstname %></p>
@@ -111,6 +102,5 @@
       </div>
     </div>
   </div>
-</section>
 
 <% end %>

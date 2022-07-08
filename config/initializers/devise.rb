@@ -16,16 +16,7 @@ Devise.setup do |config|
   # by default. You can change it below and use your own secret key.
   # config.secret_key = '9d0efa9f1528415185299a332c39531611e890de18646a6a6f694845c36496d19e6bf70b4225344bd8c67edf07d7db269677beb29637fc719e0baf9f52dbc41d'
 
-
-
-
-
-
-config.navigational_formats = ['*/*', :html, :turbo_stream]
-
-
-
-
+  config.navigational_formats = ['*/*', :html, :turbo_stream]
 
   # ==> Controller configuration
   # Configure the parent class to the devise controllers.
@@ -274,7 +265,7 @@ config.navigational_formats = ['*/*', :html, :turbo_stream]
   # should add them to the navigational formats lists.
   #
   # The "*/*" below is required to match Internet Explorer requests.
-  # config.navigational_formats = ['*/*', :html]
+  config.navigational_formats = ['*/*', :html]
 
   # The default HTTP method used to sign out a resource. Default is :delete.
   config.sign_out_via = :delete

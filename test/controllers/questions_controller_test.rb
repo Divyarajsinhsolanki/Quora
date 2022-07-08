@@ -1,17 +1,17 @@
-require "test_helper"
+require 'test_helper'
 
 class QuestionsControllerTest < ActionDispatch::IntegrationTest
-  test "should get new" do
+  test 'should get new' do
     get questions_new_url
     assert_response :success
   end
 
-  test "should get edit" do
+  test 'should get edit' do
     get questions_edit_url
     assert_response :success
   end
 
-  test "should get destroy" do
+  test 'should get destroy' do
     get questions_destroy_url
     assert_response :success
   end

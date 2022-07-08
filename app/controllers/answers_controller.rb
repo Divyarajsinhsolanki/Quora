@@ -1,5 +1,5 @@
 class AnswersController < ApplicationController
-#  before_action :authenticate_user!
+  #  before_action :authenticate_user!
 
   def new
     @answer = Answer.new
@@ -8,37 +8,31 @@ class AnswersController < ApplicationController
   def create
     @answer = Answer.new(answer_params)
     @question = Question.find(@answer.question_id)
-    @answers  =  @question.answers 
-    @user =  User.find(@question.user_id)
-    @topic =  Topic.find(@question.topic_id)
+    @answers = @question.answers
+    @user = User.find(@question.user_id)
+    @topic = Topic.find(@question.topic_id)
 
     if @answer.save
       respond_to do |format|
-        format.html 
-        format.js 
+        format.html
+        format.js
       end
     else
-      flash[:danger] = "Invalid input"    
+      flash[:danger] = 'Invalid input'
     end
   end
 
   def index
     @answers = current_user.answers
-  
   end
 
-  def edit
-  end
+  def edit; end
 
-  def show
-  end
+  def show; end
 
+  private
 
-private
-
- def answer_params
+  def answer_params
     params.require(:answer).permit(:answer, :question_id, :user_id)
   end
-
-
 end

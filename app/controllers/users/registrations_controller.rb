@@ -25,9 +25,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # def update
- 
-  # # @user.attributes = params[:user]
 
+  # # @user.attributes = params[:user]
 
   #   self.resource = resource_class.to_adapter.get!(send(:"current_#{resource_name}").to_key)
   #   prev_unconfirmed_email = resource.unconfirmed_email if resource.respond_to?(:unconfirmed_email)
@@ -50,7 +49,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   #  def update
   #   self.resource = resource_class.to_adapter.get!(send(:"current_#{resource_name}").to_key)
-
 
   #   # custom logic
   #   if params[:user][:password].present?
@@ -75,7 +73,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
   #   end
   # end
 
-
   # DELETE /resource
   # def destroy
   #   super
@@ -92,23 +89,19 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # protected
 
+  protected
 
-
-protected
-
-    def update_resource(resource, params)
-      if params[:current_password].blank?
-        resource.update_without_password(params.except(:current_password ,:password_confirmation,:password))
-      else
-        resource.update_with_password(params)
-      end
+  def update_resource(resource, params)
+    if params[:current_password].blank?
+      resource.update_without_password(params.except(:current_password, :password_confirmation, :password))
+    else
+      resource.update_with_password(params)
     end
+  end
 
-    def after_update_path_for(resource)
-      profile_path(current_user)
-    end
-
-
+  def after_update_path_for(_resource)
+    profile_path(current_user)
+  end
 
   # If you have extra params to permit, append them to the sanitizer.
   # def configure_sign_up_params
@@ -116,15 +109,10 @@ protected
   # end
 
   # If you have extra params to permit, append them to the sanitizer.
-  
-
 
   # def configure_account_update_params
   #   devise_parameter_sanitizer.permit(:account_update, keys: [:name,:firstname, :avatar ])
   # end
-
-
-
 
   # The path used after sign up.
   # def after_sign_up_path_for(resource)

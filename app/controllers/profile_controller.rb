@@ -3,32 +3,26 @@ class ProfileController < ApplicationController
   skip_before_action :authenticate_user!
 
   def edit
-
     @user = current_user
-
   end
-
 
   def update
-
     @user = current_user
 
-
-  # if params[:user][:password].blank? && params[:user][:password_confirmation].blank?
-  #     params[:user].delete(:password)
-  #     params[:user].delete(:password_confirmation)
-  # end
+    # if params[:user][:password].blank? && params[:user][:password_confirmation].blank?
+    #     params[:user].delete(:password)
+    #     params[:user].delete(:password_confirmation)
+    # end
 
     if @user.update(user_parmas)
-      puts "===================success"
+      puts '===================success'
       redirect_to profile_path(params[:id])
     else
-      flash[:danger] = "Invalid input"
+      flash[:danger] = 'Invalid input'
       # redirect_to edit_user_registration_path(id: current_user.id)
-      
+
     end
   end
-
 
   def index
     @users = User.all.order(created_at: :desc)
@@ -45,7 +39,6 @@ class ProfileController < ApplicationController
   end
 
   def user_parmas
-        params.require(:user).permit( :name, :firstname, :email, :avatar)
+    params.require(:user).permit(:name, :firstname, :email, :avatar)
   end
-
 end

@@ -1,9 +1,8 @@
-<h1>Questions</h1>
+<h2>Questions</h2>
 
-<div class="card bg-light mb-3" >
 <% @questions.each do |t|  %>
-      
-  <div class="card-header" style="border-top-color:  black;">
+<div class="card bg-light mb-3" style="margin:50px; margin-top:5px;" >
+  <div class="card-header" style="border-top-color:  black; float:left;" >
      <p>Topic:- <%= Topic.find(t.topic_id).name %>
   </div>
   <div class="card-body">
@@ -13,9 +12,9 @@
       <%= link_to t.question, question_path( id: t.id ) %>
 </p>
   </h5>
-    <p class="card-text"></p>
-    
+  
 
+  </div>
   </div>
 <% end %>
 

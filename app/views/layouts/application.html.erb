@@ -1,53 +1,47 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Quora</title>
-    
+  <title>
+ Quora
+  </title>
+  
 
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link href="img/favicon.ico" rel="icon">
+  <%= favicon_link_tag asset_path('img32.png') %>  
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">  
+
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.0/css/all.min.css" rel="stylesheet">
+            <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="css/style.css" rel="stylesheet">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%#= javascript_importmap_tags %>
     <%= javascript_include_tag :application %>
     <%= javascript_include_tag Ckeditor.cdn_url %>
-
+    <%= javascript_include_tag 'https://checkout.stripe.com/checkout.js' %>
   </head>
-  <body>
-    <header class="navbar navbar-fixed-top navbar-inverse  bg-dark" style="background-color: black;">
-      <div class="container">
+  <body  class="d-flex flex-column">
+  <%= render 'layouts/header'  %>
+  
 
-    <%= link_to "home", root_path  %>
-  <% if user_signed_in? %>
+  <% flash.each do |key, value| %>
+    <div class="<%= key %>" style="margin-top:100px;"><%= value %></div>
+<% end %>
+           <%= yield %>
     
-
-
-    <%= link_to "Show my questions",   new_question_path %>
-    <%= link_to "Show all topics",   topics_path  %>
-    <%= link_to "Show my answers",   answers_path  %>
-    <%= link_to "Profile",   profile_path(id: current_user.id)  %>
-    <%= link_to "Users",   profile_index_path   %>
-    <%= link_to "Log OUT",   destroy_user_session_path, method: :delete  %>
-    <%#= button_to("Log Out",   destroy_user_session_path, method: :delete) %>  
-  <% else %>
-    <%= link_to "log IN", new_user_session_path  %>
-    <%= link_to "Sing UP", new_user_registration_path  %>
-  <% end %>
-    </div><br><br><br><br>
-
-</header>
-    <%#= debug(params) if Rails.env.development? %>
-    <% if notice %>
-      <p class="alert alert-success"><%= notice %></p>
-    <% end %>
-    <% if alert %>
-      <p class="alert alert-danger"><%= alert %></p>
-    <% end %>
-      <%# flash.each do |name, msg| %>
-         <%#= msg %>
-       <%# end %>
-    <%= yield %>    <br>
-    <br>
   <footer class="navbar fixed-bottom navbar-inverse  bg-dark"> 
     
 

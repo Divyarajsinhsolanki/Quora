@@ -8,6 +8,6 @@ class CreateTopicRelations < ActiveRecord::Migration[7.0]
     end
     add_index :topic_relations, :follower_topic_id
     add_index :topic_relations, :topic_added_id
-    add_index :topic_relations, [:follower_topic_id, :topic_added_id], unique: true
+    add_index :topic_relations, %i[follower_topic_id topic_added_id], unique: true
   end
 end

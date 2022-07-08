@@ -1,20 +1,17 @@
 class StaticPagesController < ApplicationController
   skip_before_action :authenticate_user!
 
-  def home 
+  def home
     @topics = Topic.all
-    @questions = Question.all.paginate(:page => params[:page], :per_page => 5)
-    @questions_group_by_topic = @questions.group_by(&:topic).sort_by{|k,v| k.created_at}.reverse
+    @questions = Question.all.paginate(page: params[:page], per_page: 5)
+    @questions_group_by_topic = @questions.group_by(&:topic).sort_by { |k, _v| k.created_at }.reverse
 
     @user = User.all
   end
 
-  def help  
-  end
+  def help; end
 
-  def about
-  end
+  def about; end
 
-  def contact
-  end
-end 
+  def contact; end
+end

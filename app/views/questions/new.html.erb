@@ -1,4 +1,4 @@
-<h1>Ask Questions..</h1>
+<div  ><h2>Ask Questions..</h2>
 
 <%= form_for @question, url: questions_path,remote: true  do |f| %>
 
@@ -10,9 +10,12 @@
   <%= f.hidden_field :user_id, value: current_user.id %>
   
   <%= f.submit "add question" %>
+  <% if current_user.stripe_id.present? %>
+<% else %>
+    <%#= link_to "add question", 'javascript:void(0)', onclick: "alert('Please buy subscription');" %>
 <% end %>
-
+<% end %>
  <div id= "question_list">
   <%=  render 'questions/allquestions' %>
-    
+    </div>
   </div>

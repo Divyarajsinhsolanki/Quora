@@ -1,28 +1,27 @@
 class TopicsController < ApplicationController
   # before_filter :authenticate_user!
 
-  def new
-  end
+  def new; end
 
   def index
-    @topics = Topic.paginate(:page => params[:page],per_page: 10)
+    @topics = Topic.paginate(page: params[:page], per_page: 10)
     @topic = Topic.new
   end
 
   def create
-      @topic = Topic.new(topic_params)
-      @topics = Topic.all
-  
-      if @topic.save
+    @topic = Topic.new(topic_params)
+    @topics = Topic.all
+
+    if @topic.save
       respond_to do |format|
         format.html
-        format.js      
+        format.js
       end
     end
   end
 
   def destroy
-    @topic = current_user.topics.find(params[:id]).destroy 
+    @topic = current_user.topics.find(params[:id]).destroy
     redirect_to user_topics_path
   end
 
@@ -32,10 +31,9 @@ class TopicsController < ApplicationController
     @user      = current_user
   end
 
-private
+  private
 
- def topic_params
+  def topic_params
     params.require(:topic).permit(:name, :user_id)
   end
 end
-

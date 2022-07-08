@@ -10,19 +10,32 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
+ *= require font-awesome
  *= require_tree .
  *= require_self
  */
-
-body {
-text-align: center; 
-background-color: #d6cbd3  ;
+ body {
+  text-align: center; 
+  background-color: rgb(202, 202, 210)  ;
+  background-image: url(img11.jpeg);
+  
 }
+
+
+
+a{
+  color: rgb(7, 7, 243)  ;
+}
+
+.flex-fill {
+  flex:1 1 auto;
+}
+
 
 
 .gradient-custom-2 {
 /* fallback for old browsers */
-background: #d6cbd3  ;
+background: #d8ccd5  ;
 
 /* Chrome 10-25, Safari 5.1-6 */
 background: -webkit-linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593);
@@ -95,3 +108,26 @@ border-bottom-right-radius: .3rem;
   *:first-child + html .digg_pagination {
     overflow: hidden; 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
