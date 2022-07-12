@@ -21,8 +21,8 @@
               <div class="flex-grow-1 ms-3">
                 <h5 class="mb-1"><p> Firstname:-			<%= @user.firstname %></p>
 										<p>Lastname:-			<%= @user.name %></p>
-                    <% if current_user.stripe_id.present? %>
-                    <p>Active plan :-<%= Stripe::Subscription.list(customer: current_user.stripe_id).data.first.plan.id %></p>
+                    <%     if Transaction.find_by(user_id: current_user.id).present? %>
+                    <p><%=   Transaction.find_by(user_id: current_user.id).payment_status %></p>
                           <% end %>  
                    </h5>
                 <p class="mb-2 pb-1" style="color: #2b2a2a;"><%= @user.email %></p>

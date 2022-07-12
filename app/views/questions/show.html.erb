@@ -1,7 +1,6 @@
-       <% if user_signed_in? %>
+<% if user_signed_in? %>
 
-<br>
-<div class="card bg-secondary text-white" style="margin-left: 15px; margin-right: 15px; padding-top: 10px; ">
+<br><div class="card bg-secondary text-white" style="margin-left: 15px; margin-right: 15px; padding-top: 10px; ">
 <table style="width:100%;">
   <td>
   <h1>User - <%= link_to @user.email, profile_path(id: @user) %></h1>
@@ -50,7 +49,6 @@
       <p class="card-text">
 
   <%= form_for @answer, url: answers_path( question_id: @question.id),remote: true  do |f| %>
-      <%#= f.cktext_area :answer, as: :ckeditor, input_html: { ckeditor: { filebrowserImageBrowseUrl: '/ckeditor/pictures', filebrowserImageUploadUrl: '/ckeditor/pictures' } } %>
 
 <%= render 'layouts/error_messages', object: f.object %>  
       
@@ -64,7 +62,7 @@
       </p>
   </div>
 
-                                                  <% else %>
+<% else %>
 
 
 <hr><table style="width:100%;">

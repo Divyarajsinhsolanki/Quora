@@ -9,12 +9,12 @@
 
 #   # Product, either 'service' or 'good'
 #   product.type = 'service'
-# end
-Stripe.product :primo do |product|
-    product.name = 'PRIMO as a service'
-    product.type = 'service'
-    product.statement_descriptor = 'PRIMO'
-  end
+# # end
+# Stripe.product :primo do |product|
+#     product.name = 'PRIMO as a service'
+#     product.type = 'service'
+#     product.statement_descriptor = 'PRIMO'
+#   end
 
 # Once you have your products defined, you can run
 #

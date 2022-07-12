@@ -5,34 +5,27 @@ class QuestionsController < ApplicationController
 
   def new
     @question = Question.new
-    @questions = current_user.questions
+    @questions = current_user.questions.where(publish: true)
   end
 
   def create
-    if current_user.stripe_id.present?
-      @question =  Question.new(question_params)
-      @questions = current_user.questions
-
-      if @question.save
-        respond_to do |format|
-          format.html
-          format.js
-        end
-      else
-        flash[:danger] = 'Invalid'
-        redirect_to user_question_path
-      end
+    @question =  Question.new(question_params)
+    unless @question.save
+      flash[:danger] = 'invalid Question'
+    end
+    if @question.publish == true
+      redirect_to new_question_path 
     else
-      redirect_to billing_path
+      redirect_to success_path
     end
   end
 
   def show
     @answer   = Answer.new
-    @question = Question.find(params[:id])
-    @answers = @question.answers
-    @user = User.find(@question.user_id)
-    @topic =  Topic.find(@question.topic_id)
+    @question = Question.includes({answers: :user}, :user, :topic).find(params[:id])
+    @answers = @question.answers.order(created_at: :desc)
+    @user = @question.user
+    @topic =  @question.topic
   end
 
   def index
@@ -42,7 +35,6 @@ class QuestionsController < ApplicationController
   end
 
   def edit; end
-
   def destroy; end
 
   private

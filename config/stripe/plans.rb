@@ -13,6 +13,7 @@ Stripe.plan :gold do |plan|
   plan.name = 'ACME Gold'
   plan.amount = 999 # $9.99
   plan.interval = 'week'
+    plan.currency = 'inr'
 end
 
 # Stripe.plan :primo do |plan|
@@ -23,7 +24,6 @@ end
 #   plan.amount = 699
 #
 #   # currency to use for the plan (default 'usd')
-#   plan.currency = 'usd'
 #
 #   # interval must be either 'day', 'week', 'month' or 'year'
 #   plan.interval = 'week'

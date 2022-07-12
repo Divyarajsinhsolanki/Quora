@@ -32,14 +32,14 @@
     <%= javascript_include_tag :application %>
     <%= javascript_include_tag Ckeditor.cdn_url %>
     <%= javascript_include_tag 'https://checkout.stripe.com/checkout.js' %>
+    <script src="https://js.stripe.com/v3/"></script>
   </head>
   <body  class="d-flex flex-column">
   <%= render 'layouts/header'  %>
   
-
   <% flash.each do |key, value| %>
-    <div class="<%= key %>" style="margin-top:100px;"><%= value %></div>
-<% end %>
+    <div class="<%= key %>" style="margin-top:30px;"><%= value %></div>
+  <% end %>
            <%= yield %>
     
   <footer class="navbar fixed-bottom navbar-inverse  bg-dark"> 

@@ -1,6 +1,6 @@
 <div  ><h2>Ask Questions..</h2>
 
-<%= form_for @question, url: questions_path,remote: true  do |f| %>
+<%= form_for @question, url: questions_path  do |f| %>
 
 
   <%= f.collection_select :topic_id, Topic.order(:name),:id,:name %>
@@ -9,12 +9,10 @@
   <%= f.text_field :question %>
   <%= f.hidden_field :user_id, value: current_user.id %>
   
-  <%= f.submit "add question" %>
-  <% if current_user.stripe_id.present? %>
-<% else %>
-    <%#= link_to "add question", 'javascript:void(0)', onclick: "alert('Please buy subscription');" %>
+    <%= f.submit "add question" %>
+
 <% end %>
-<% end %>
+
  <div id= "question_list">
   <%=  render 'questions/allquestions' %>
     </div>

@@ -39,4 +39,8 @@ Rails.application.routes.draw do
   get '/success' => 'billing#success', as: :success
   post '/subscription' => 'billing#subscribe', as: :subscribe
   resources :charges, only: [:new, :create]
+  post 'charges/create' => 'charges#create', as: "charges_create"
+  post 'checkout/create' => 'checkout#create', as: "checkout_create"
+
+  get  'transaction/success' => 'transaction#success', as: "transaction_success"
 end

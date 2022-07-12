@@ -1,0 +1,7 @@
+var stripe = Stripe("pk_test_51LI9drSFHL5joWv1wNMMjJoxEMX1wxbJ1MEQiCdZBigcmXBx6P7dzlF5YDMHxnBrY3DoNgbrX8xW6npkVbylCJjz00hNAzunDJ")
+
+stripe.redirectToCheckout({
+    sessionId: '<%= @subscription.id %>'
+}).then(function (result) {
+    console.log(result.error_message)
+});

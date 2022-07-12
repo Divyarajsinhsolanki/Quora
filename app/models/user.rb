@@ -18,7 +18,7 @@ class User < ApplicationRecord
   has_many :topics, dependent: :destroy
   has_many :questions, dependent: :destroy
   has_many :answers, dependent: :destroy
-
+  has_many :transactions
   has_one_attached :avatar
   has_many_attached :photos
 

@@ -16,7 +16,8 @@
             <%= link_to "Answers",   answers_path ,class: "nav-item nav-link" %>
             <%= link_to "Profile",   profile_path(id: current_user.id) ,class: "nav-item nav-link" %>
               <%= link_to "Users",   profile_index_path  ,class: "nav-item nav-link" %>
-            <%= link_to "Billing", billing_path,class: "nav-item nav-link" %>
+            <%#= link_to "Billing", billing_path,class: "nav-item nav-link" %>
+          <%#= button_to "checkout", checkout_create_path %>
         </div>
         <div class="d-none d-lg-flex align-items-center ps-4">
 
