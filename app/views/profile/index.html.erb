@@ -5,9 +5,6 @@
 	  <div class="carousel-item active">
 		  <div class="row">
 
-
-
-
 	<div class="container" style="margin:10px; " >
 
 	   <div class="row">
@@ -35,8 +32,8 @@
 	      <p class="card-text">
 
 			<%= link_to user.email , profile_path(id: user.id) %>
-		  <br>Following			<%=  user.following.count %>
-				  Followers			<%=  user.followers.count %>
+		  <br>Following			<%=  user.following.size %>
+				  Followers			<%=  user.followers.size %>
 	       </p>
 	      <%= link_to "See Profile", profile_path(id: user.id) ,class: "btn btn-primary"%>
 

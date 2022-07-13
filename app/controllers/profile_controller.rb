@@ -15,7 +15,6 @@ class ProfileController < ApplicationController
     # end
 
     if @user.update(user_parmas)
-      puts '===================success'
       redirect_to profile_path(params[:id])
     else
       flash[:danger] = 'Invalid input'
@@ -25,7 +24,7 @@ class ProfileController < ApplicationController
   end
 
   def index
-    @users = User.all.order(created_at: :desc)
+    @users = User.with_attached_avatar.includes(:followers,:following).order(created_at: :desc)
   end
 
   def show
