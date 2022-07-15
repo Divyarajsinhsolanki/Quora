@@ -10,7 +10,11 @@
   <%= f.hidden_field :user_id, value: current_user.id %>
   
     <%= f.submit "add question" %>
+<% end %>
 
+<%= form_tag({:action => :readcsv}, multipart: true) do %>
+  <%= file_field_tag :file %>
+  <%= submit_tag( "Import" ) %>
 <% end %>
 
  <div id= "question_list">

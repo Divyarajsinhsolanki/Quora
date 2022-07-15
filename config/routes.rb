@@ -20,14 +20,14 @@ Rails.application.routes.draw do
   end
 
   resources :profile
-
+  # patch '/fileupdate' => 'profile#update_file'
+  post '/readcsv' => 'questions#readcsv'
   resources :topics do
     get '/page/:page', action: :index, on: :collection
   end
 
   resources :questions
   resources :answers
-
   resources :topic_relations, only: %i[create destroy]
   resources :relationships,   only: %i[create destroy]
 
@@ -43,4 +43,9 @@ Rails.application.routes.draw do
   post 'checkout/create' => 'checkout#create', as: "checkout_create"
 
   get  'transaction/success' => 'transaction#success', as: "transaction_success"
+  require 'sidekiq/web'
+  Rails.application.routes.draw do
+    mount Sidekiq::Web => '/sidekiq'
+  end
+
 end

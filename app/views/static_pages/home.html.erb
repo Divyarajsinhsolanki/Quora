@@ -17,6 +17,9 @@
 
         <p style="color: gray; text-align: right;"> 
                  Question asked by.  
+                 	<% if @user.find(q.user_id).avatar.attached? %>
+								 <%= image_tag @user.find(q.user_id).avatar,style: "width:30px;",class: "img-fluid" %>
+								<% end %>
                  <% if @user.find(q.user_id).firstname.present? %>
                    <%= @user.find(q.user_id).firstname   %>
                  <% else %>

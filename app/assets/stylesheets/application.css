@@ -21,17 +21,13 @@
   
 }
 
-
-
 a{
-  color: rgb(7, 7, 243)  ;
+  color: #4fa3a5  ;
 }
 
 .flex-fill {
   flex:1 1 auto;
 }
-
-
 
 .gradient-custom-2 {
 /* fallback for old browsers */

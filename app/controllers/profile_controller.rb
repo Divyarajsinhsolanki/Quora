@@ -8,23 +8,16 @@ class ProfileController < ApplicationController
 
   def update
     @user = current_user
-
-    # if params[:user][:password].blank? && params[:user][:password_confirmation].blank?
-    #     params[:user].delete(:password)
-    #     params[:user].delete(:password_confirmation)
-    # end
-
     if @user.update(user_parmas)
       redirect_to profile_path(params[:id])
     else
       flash[:danger] = 'Invalid input'
-      # redirect_to edit_user_registration_path(id: current_user.id)
-
+      render 'edit'
     end
   end
 
   def index
-    @users = User.with_attached_avatar.includes(:followers,:following).order(created_at: :desc)
+    @users = User.with_attached_avatar.includes({avatar_attachment: :blob},:followers,:following).order(created_at: :desc)
   end
 
   def show
