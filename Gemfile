@@ -27,7 +27,7 @@ gem 'devise-bootstrap-views'
 gem 'kaminari'
 
 gem 'jquery-rails'
-
+gem "letter_opener"
 # gem 'turbolinks_render'
 
 # gem 'bootstrap-sass'

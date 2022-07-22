@@ -17,13 +17,13 @@
 
         <p style="color: gray; text-align: right;"> 
                  Question asked by.  
-                 	<% if @user.find(q.user_id).avatar.attached? %>
-								 <%= image_tag @user.find(q.user_id).avatar,style: "width:30px;",class: "img-fluid" %>
+                 	<% if q.user.avatar.attached? %>
+								 <%= image_tag q.user.avatar,style: "width:30px;",class: "img-fluid" %>
 								<% end %>
-                 <% if @user.find(q.user_id).firstname.present? %>
-                   <%= @user.find(q.user_id).firstname   %>
+                 <% if q.user.firstname.present? %>
+                   <%= q.user.firstname   %>
                  <% else %>
-                    <%= @user.find(q.user_id).email %>
+                    <%= q.user.email %>
                  <% end %>
                  </p>
                    
@@ -34,10 +34,10 @@
     <p class="card-text">
     <%= q.answers.last.answer.html_safe %>
                    <p style="color: gray; text-align: right;"> 
-                  <% if @user.find(q.answers.last.user_id).avatar.attached? %>
-              <%= image_tag @user.find(q.answers.last.user_id).avatar, style: "width:30px; height:30px;" %>
+                  <% if q.answers.last.user.avatar.attached? %>
+              <%= image_tag q.answers.last.user.avatar, style: "width:30px; height:30px;" %>
                 <% end %>
-                              <%= @user.find(q.answers.last.user_id).firstname %>
+                              <%= q.answers.last.user.firstname %>
              <br> Posted <%= time_ago_in_words(q.answers.last.created_at) %> ago. 
            </p>
          </p>
@@ -80,10 +80,10 @@
     <p class="card-text">
     <%= q.answers.last.answer.html_safe %>
                    <p style="color: gray; text-align: right;"> 
-                  <% if @user.find(q.answers.last.user_id).avatar.attached? %>
-              <%= image_tag @user.find(q.answers.last.user_id).avatar, style: "width:30px; height:30px;" %>
+                  <% if q.answers.last.user.avatar.attached? %>
+              <%= image_tag q.answers.last.user.avatar, style: "width:30px; height:30px;" %>
                 <% end %>
-                              <%= @user.find(q.answers.last.user_id).firstname %>
+                              <%= q.answers.last.user.firstname %>
              <br> Posted <%= time_ago_in_words(q.answers.last.created_at) %> ago. 
            </p>
          </p>
@@ -101,6 +101,9 @@
 </div>
 
 <% end %>
+<div   class="digg_pagination" style="padding-left: 40%; background-color: #d6cbd3  ;">
+<%= will_paginate @questions %>
+</div>
 
 <% end %>
    

@@ -5,30 +5,24 @@ class QuestionsController < ApplicationController
 
   def new
     @question = Question.new
-    @questions = current_user.questions.where(publish: true)
+    @questions = current_user.questions.where(publish: true).paginate(page: params[:page], per_page: 10)
     @user = current_user
   end
-  
+
   def readcsv
-    
+    flash[:danger] = 'file uploading'
+    read = CSV.read(params[:file].path)
+    FirstWorker.perform_async(read,current_user.id)
     redirect_to new_question_path
-    myfile = params[:file]
-    
-    CSV.foreach(myfile.path) do |row|
-      rowarray = Array.new
-      rowarray << row
-      id = current_user.id
-     LastSingedInJob.perform_now(rowarray,id)     
-    end
-  end 
+  end
 
   def create
-    @question =  Question.new(question_params)
+    @question = Question.new(question_params)
     unless @question.save
       flash[:danger] = 'invalid Question'
     end
     if current_user.questions.last.publish == true
-      redirect_to new_question_path 
+      redirect_to new_question_path
     else
       redirect_to success_path
     end

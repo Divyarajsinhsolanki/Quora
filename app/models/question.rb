@@ -5,8 +5,7 @@ class Question < ApplicationRecord
   belongs_to :topic
   has_many :answers, dependent: :destroy
 
-  validates :question, presence: true, uniqueness: { case_sensitive: false },
-                       length: { minimum: 2, maximum: 150 }
+  validates :question, presence: true, length: { minimum: 2, maximum: 150 }
 
   def check
     if  (trans = Transaction.find_by(user_id: self.user_id)).present?

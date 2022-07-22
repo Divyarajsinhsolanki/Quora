@@ -34,3 +34,6 @@ class ProfileController < ApplicationController
     params.require(:user).permit(:name, :firstname, :email, :avatar)
   end
 end
+
+
+

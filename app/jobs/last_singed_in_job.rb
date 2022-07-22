@@ -1,20 +1,17 @@
 class LastSingedInJob < ApplicationJob
+  
   queue_as :default
 
-  def perform(rowarray,id)
+  # def perform(myfile,id)
 
-    if  Topic.find_by(user_id: id,name: rowarray.first.second).present?
-      @topic = Topic.find_by(user_id: id,name: rowarray.first.second)
-      @topic.update(user_id: id,name: rowarray.first.second)
-    else
-      @topic = Topic.new(user_id: id,name: rowarray.first.second)
-      @topic.save
-    end
+  #   CSV.foreach(myfile.path) do |row|
+  #     rowarray = Array.new
+  #     rowarray << row
 
-    # @topic = Topic.find_by(name: rowarray.first.second).id
-
-    @question = Question.find_or_initialize_by(user_id: id,question: rowarray.first.first,topic_id: @topic.id)
-    @question.save 
-
-  end
+  #     @topic = Topic.find_or_initialize_by(user_id: id,name: rowarray.first.second)
+  #     @topic.save 
+  #     @question = Question.find_or_initialize_by(user_id: id,question: rowarray.first.first,topic_id: @topic.id)
+  #     @question.save 
+  #   end
+  # end
 end

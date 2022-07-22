@@ -2,7 +2,6 @@
 
 <%= form_for @question, url: questions_path  do |f| %>
 
-
   <%= f.collection_select :topic_id, Topic.order(:name),:id,:name %>
 
   <%= f.label :question %>
@@ -11,7 +10,7 @@
   
     <%= f.submit "add question" %>
 <% end %>
-
+<br>
 <%= form_tag({:action => :readcsv}, multipart: true) do %>
   <%= file_field_tag :file %>
   <%= submit_tag( "Import" ) %>
@@ -21,3 +20,7 @@
   <%=  render 'questions/allquestions' %>
     </div>
   </div>
+
+<div   class="digg_pagination" style="padding-left: 40%; background-color: #d6cbd3  ;">
+<%= will_paginate @questions %>
+</div>

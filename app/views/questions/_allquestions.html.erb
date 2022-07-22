@@ -3,7 +3,7 @@
 <% @questions.each do |t|  %>
 <div class="card bg-light mb-3" style="margin:50px; margin-top:5px;" >
   <div class="card-header" style="border-top-color:  black; float:left;" >
-     <p>Topic:- <%= Topic.find(t.topic_id).name %>
+     <p>Topic:- <%= t.topic.name %>
   </div>
   <div class="card-body">
    
