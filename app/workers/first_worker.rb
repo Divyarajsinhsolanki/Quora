@@ -15,12 +15,11 @@ class FirstWorker
         questions << question
       end
     end
+    emails = []
     questions.group_by{|question| question.topic_id}.each do |topic_id, questions|
-      users = Topic.find(topic_id).followersoftopic
-      
-        NotificationMailer.question(users,questions).deliver_later
-      
+      emails << Topic.find(topic_id).followersoftopic.pluck(:email)
     end
+    NotificationMailer.question(emails).deliver_later
     current_user = User.find(id)
     NotificationMailer.uploaded(current_user).deliver_later
   end

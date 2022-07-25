@@ -1,4 +1,5 @@
 class NotificationMailer < ApplicationMailer
+
   def notification_mailer(notification)
     @notification = notification
     @url = "http://postbox.tut/"
@@ -10,9 +11,7 @@ class NotificationMailer < ApplicationMailer
     mail(to: @user.email, subject: 'File uploaded')
   end
 
-  def question(users,questions)
-    @user = users
-    @questions = questions
-    mail(to: @user.email, subject: 'New question added to your followed topic')
+  def question(emails)
+    mail(to: emails, subject: 'New question added ')
   end
 end
