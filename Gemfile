@@ -17,8 +17,6 @@ gem 'mini_magick'
 gem 'stripe-rails'
 
 gem 'will_paginate-bootstrap'
-# gem "will_paginate"
-# gem 'sass-rails'
 gem 'devise'
 gem 'font-awesome-rails'
 gem 'rubocop'
@@ -27,10 +25,9 @@ gem 'devise-bootstrap-views'
 gem 'kaminari'
 
 gem 'jquery-rails'
-gem "letter_opener"
-# gem 'turbolinks_render'
-
-# gem 'bootstrap-sass'
+gem 'letter_opener'
+gem 'turbolinks_render'
+gem 'turbo-rails'
 
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 1.1'
@@ -50,7 +47,7 @@ gem 'stimulus-rails'
 gem 'jbuilder'
 
 # Use Redis adapter to run Action Cable in production
-gem "redis", "~> 4.0"
+gem 'redis', '~> 4.0'
 gem 'sidekiq'
 gem 'smarter_csv'
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]

@@ -7,31 +7,27 @@
 <span class="navbar-toggler-icon"></span>
 </button>
 <div class="collapse navbar-collapse" id="navbarCollapse">
-<div class="navbar-nav ms-auto py-0 pe-4 border-end border-5 border-primary">
-
-<% if user_signed_in? %>
-            <%= link_to "Home", root_path,  class: "nav-item nav-link"  %>
-             <%= link_to "Questions",   new_question_path,   class: "nav-item nav-link" %>
-             <%= link_to "Topics",   topics_path,class: "nav-item nav-link"  %>        
-            <%= link_to "Answers",   answers_path ,class: "nav-item nav-link" %>
-            <%= link_to "Profile",   profile_path(id: current_user.id) ,class: "nav-item nav-link" %>
-              <%= link_to "Users",   profile_index_path  ,class: "nav-item nav-link" %>
-            <%#= link_to "Billing", billing_path,class: "nav-item nav-link" %>
-          <%#= button_to "checkout", checkout_create_path %>
-        </div>
-        <div class="d-none d-lg-flex align-items-center ps-4">
-
-        <div>
-
-        <%= link_to "Log OUT",   destroy_user_session_path, method: :delete,class: "nav-item nav-link"  %>
-        <% else %>
+  <div class="navbar-nav ms-auto py-0 pe-4 border-end border-5 border-primary">
+    <% if user_signed_in? %>
+      <%= link_to "Home", root_path,  class: "nav-item nav-link"  %>
+      <%= link_to "Questions",   new_question_path,   class: "nav-item nav-link" %>
+      <%= link_to "Topics",   topics_path,class: "nav-item nav-link"  %>        
+      <%= link_to "Answers",   answers_path ,class: "nav-item nav-link" %>
+      <%= link_to "Profile",   profile_path(id: current_user.id) ,class: "nav-item nav-link" %>
+      <%= link_to "Users",   profile_index_path  ,class: "nav-item nav-link" %>
+      <%#= link_to "Billing", billing_path,class: "nav-item nav-link" %>
+      <%#= button_to "checkout", checkout_create_path %>
+  </div>
+  <div class="d-none d-lg-flex align-items-center ps-4">
+    <div>
+        <%= link_to "Log OUT", destroy_user_session_path, method: :delete,class: "nav-item nav-link"  %>
+      <% else %>
         <%= link_to "log IN", new_user_session_path,class: "nav-item nav-link"  %>
         <%= link_to "Sing UP", new_user_registration_path ,class: "nav-item nav-link" %>
-<% end %>
-  </div>
- 
-        </div>
+      <% end %>
     </div>
+  </div>
+  </div>
 </nav>
 <!-- Navbar End --> 
 

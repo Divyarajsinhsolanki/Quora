@@ -23,8 +23,21 @@
 
     <td> <%= render 'shared/tfollowers' %>     </td>
    
-    <td> <%= render 'shared/tfollowbutton' %> </td>
-  
+    <div id="topic_form">
+<% if current_user.followingtopic?(@topic) %>
+    <%= form_for current_user.active_relationships_topic.find_by(topic_added_id: @topic.id), html: { method: :delete }, remote: true do |f| %>
+
+    <%= f.submit "Unfollow Topic", class: "btn" %>
+    <% end %>
+<% else %>  
+
+    <%= form_for current_user.active_relationships_topic.build, remote: true do |f| %>
+        
+      <%= hidden_field_tag   :topic_added_id, @topic.id %>
+       
+    <%= f.submit "Follow Topic", class: "btn btn-primary" %>
+    <% end %><% end %>
+</div>
   </tr>
 </table>
 </div>
