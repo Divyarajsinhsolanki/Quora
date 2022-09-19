@@ -9,8 +9,8 @@ class AnswersController < ApplicationController
     @answer = Answer.new(answer_params)
     @question = Question.find(@answer.question_id)
     @answers = @question.answers
-    @user = User.find(@question.user_id)
-    @topic = Topic.find(@question.topic_id)
+    @user = @question.user
+    @topic = @question.topic
 
     if @answer.save
       respond_to do |format|

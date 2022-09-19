@@ -16,8 +16,17 @@ class ProfileController < ApplicationController
     end
   end
 
+  def create
+    p params
+    @room = Room.create(name: params["name"])
+  end
   def index
+    @room = Room.new
+    @rooms = Room.all
     @users = User.with_attached_avatar.includes({avatar_attachment: :blob},:followers,:following).order(created_at: :desc)
+    if request.post?
+      @room = Room.create(name: params["room"]["name"])
+    end
   end
 
   def show

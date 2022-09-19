@@ -1,29 +1,23 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.7.0'
+ruby '3.0.0'
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
-# gem "rails", "~> 7.0.3"
+gem "rails", "~> 7.0.3"
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem 'sprockets-rails'
-
 gem 'ckeditor', github: 'galetahub/ckeditor'
-
 gem 'image_processing'
 gem 'mini_magick'
-
 gem 'stripe-rails'
-
 gem 'will_paginate-bootstrap'
 gem 'devise'
 gem 'font-awesome-rails'
 gem 'rubocop'
 gem 'devise-bootstrap-views'
-
 gem 'kaminari'
-
 gem 'jquery-rails'
 gem 'letter_opener'
 gem 'turbolinks_render'

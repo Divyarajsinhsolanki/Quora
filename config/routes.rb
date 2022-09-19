@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :notifications
   devise_for :users, controllers: {
     sessions: 'users/sessions',
     registrations: 'users/registrations'
@@ -25,7 +26,10 @@ Rails.application.routes.draw do
   resources :answers
   resources :topic_relations, only: %i[create destroy]
   resources :relationships,   only: %i[create destroy]
-  
+  resources :rooms do
+    resources :messages
+  end
+
   post '/readcsv' => 'questions#readcsv'
   post 'stripe_checkout' => 'subscription#stripe_checkout'
   get '/billing' => 'billing#index', as: :billing
@@ -40,9 +44,11 @@ Rails.application.routes.draw do
 
   require 'sidekiq/web'
   Rails.application.routes.draw do
+  resources :notifications
     mount Sidekiq::Web => '/sidekiq'
   end
   mount Ckeditor::Engine => '/ckeditor'
   mount Stripe::Engine => '/stripe'
+  mount ActionCable.server => '/cable'
 
 end
