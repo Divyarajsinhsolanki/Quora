@@ -16,6 +16,14 @@
 									<p>No profile image</p>
 								<% end %>
 
+              	<% if @user.photos.attached? %>
+                  <% @user.photos.each do |a| %>
+                    <%= image_tag a,style: "width:150px;",class: "img-fluid" %>
+								  <% end %>
+								<%else%>
+									<p>No profile photos</p>
+                <% end %>
+
               </div>
 
               <div class="flex-grow-1 ms-3">

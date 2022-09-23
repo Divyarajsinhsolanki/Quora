@@ -22,6 +22,7 @@ gem 'jquery-rails'
 gem 'letter_opener'
 gem 'turbolinks_render'
 gem 'turbo-rails'
+gem 'coffee-rails'
 
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 1.1'

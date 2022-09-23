@@ -1,29 +1,13 @@
-<div class="card text-white bg-secondary mb-3" style="margin:30px;">
-  <div style="align-items:center;">
-    <div class="card-header">
-    <%= render partial: "layouts/new_room_form" %>
-    </div>
-  <div class="card-body">
-    <%= turbo_stream_from "rooms" %>
-      <div id="rooms" class="btn btn-success">
-      <%= render @rooms %>
-    <div>
-  </div>
-
-  </div>
+<div class="container">
+  <h5> Hi <%= current_user&.firstname %> </h5>
+<br>  <h4> Rooms </h4>
+  <%= render @rooms %>
 </div>
-
-<div class="col-md-10 text-light">
-  <% if @single_room %>
-
-    <h4 class="color:red;"> <%= @single_room.name %> </h4>
-      <%= turbo_stream_from @single_room %>
-      <%= render @messages %>
-      
-      <div id="messages">
-      </div>
-
-    <%= render partial: 'layouts/new_message_form' %>
-
-  <% end %>
+<% if @single_room.present? %>
+<%= turbo_stream_from @single_room %>
+<%= render @messages %>
+<div id="messages">
 </div>
+<%= render partial: 'layouts/new_message_form' %>
+
+<% end %>

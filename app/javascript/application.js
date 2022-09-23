@@ -2,6 +2,13 @@
 //= require jquery3
 //= require jquery_ujs
 
+message_appender=function(content) {
+  $('#messages-table').append(content);
+} 
+$(document).on('turbolinks:load',function() {
+  message_appender('hello, world!');
+});
+
 CKEDITOR.editorConfig = function(config) {
   config.language = 'en';
   config.filebrowserBrowseUrl = "/ckeditor/attachment_files";

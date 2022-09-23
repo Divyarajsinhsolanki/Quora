@@ -29,7 +29,6 @@ Rails.application.routes.draw do
   resources :rooms do
     resources :messages
   end
-
   post '/readcsv' => 'questions#readcsv'
   post 'stripe_checkout' => 'subscription#stripe_checkout'
   get '/billing' => 'billing#index', as: :billing

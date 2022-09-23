@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-  <title>
- Quora
-  </title>
+  <title> Quora </title>
   
 
   <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -38,16 +36,6 @@
     <%= javascript_importmap_tags %>
   </head>
   <body  class="d-flex flex-column">
-<style>
-  <%= ".msg-#{current_user&.id}" %> {
-  background-color: #007bff !important;
-  padding: 10px;
-  }
-  <%= ".cont-#{current_user&.id}" %> {
-  display: flex;
-  justify-content: flex-end
-  }
-</style>
 
       <%= render 'layouts/header'  %>
       <% flash.each do |key, value| %>

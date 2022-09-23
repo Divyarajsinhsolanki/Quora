@@ -12,7 +12,7 @@ class RoomsController < ApplicationController
     @room = Room.new
     @message = Message.new
     @messages = @single_room.messages
-
+    @current_user = current_user
     render "index"
 
   end
