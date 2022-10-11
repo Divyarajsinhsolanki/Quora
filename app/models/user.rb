@@ -1,12 +1,13 @@
 class User < ApplicationRecord
+
   has_many :messages
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
   validates :email,    presence: true, length: { minimum: 2, maximum: 50 }
-  validates :firstname, presence: true, length: { minimum: 2, maximum: 50 }
-  validates :name, presence: true, length: { minimum: 2, maximum: 50 }
+  # validates :firstname, presence: true, length: { minimum: 2, maximum: 50 }
+  # validates :name, presence: true, length: { minimum: 2, maximum: 50 }
 
   has_many :topics, dependent: :destroy
   has_many :questions, dependent: :destroy
@@ -53,4 +54,6 @@ class User < ApplicationRecord
   def following?(other_user)
     following.include?(other_user)
   end
+  include Cubism::User
+
 end

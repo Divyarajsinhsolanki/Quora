@@ -1,13 +1,54 @@
+<script>
+$(document).ready(function(){
+  var tmo = null;
+  $("#msg").on("input", function(){
+    $.ajax({
+      type: 'GET',
+      url: '/rooms/rtm',
+      data: {data: ''}
+    });
+    if (tmo) {
+      clearTimeout(tmo);
+    }
+    tmo = setTimeout(function () {
+      $.ajax({
+        type: 'GET',
+        url: '/rooms/rmm',
+        data: {data: ''}
+    });
+    }, 1000);
+  });
+});
+</script>
+<style>
+background-color: #ece5dd !important; 
+</style>
+
 <div class="container">
   <h5> Hi <%= current_user&.firstname %> </h5>
-<br>  <h4> Rooms </h4>
+
+  <%= render partial: 'layouts/new_room_form' %>
+  <h4> Rooms </h4>
+<%= turbo_stream_from "rooms" %>
+<div id="rooms">
   <%= render @rooms %>
 </div>
-<% if @single_room.present? %>
-<%= turbo_stream_from @single_room %>
-<%= render @messages %>
-<div id="messages">
 </div>
-<%= render partial: 'layouts/new_message_form' %>
+<div class="message-room">
+<% if @single_room.present? %>
+  <%= link_to @single_room.name,@single_room, class: "btn btn-primary room-name" %>
+    <%= turbo_stream_from @single_room %>
+    <div id="messages">
+      <%= render @messages %>
+    </div>
 
-<% end %>
+   <%= turbo_stream_from "msgs" %>
+    <%= render @msgs %>
+  <div id="msgs">
+  </div>
+
+  <%= render partial: 'layouts/new_message_form' %>
+  <br>
+  <% end %>
+</div>
+

@@ -22,6 +22,7 @@ Rails.application.configure do
   config.action_mailer.raise_delivery_errors = true
   
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+  config.hosts << "61fc-122-170-1-30.in.ngrok.io"
 
   # Enable/disable caching. By default caching is disabled.
   # Run rails dev:cache to toggle caching.

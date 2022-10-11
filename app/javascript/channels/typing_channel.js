@@ -1,7 +1,8 @@
 import consumer from "channels/consumer"
 
-consumer.subscriptions.create("WebNotificationsChannel", {
+consumer.subscriptions.create("TypingChannel", {
   connected() {
+    console.log("connectedasdasdasdasddd-----------------------------------")
     // Called when the subscription is ready for use on the server
   },
 
@@ -10,6 +11,11 @@ consumer.subscriptions.create("WebNotificationsChannel", {
   },
 
   received(data) {
+    wall = document.getElementById('typing');
+    wall.innerHTML +=  "hhhhhhhhhhh";
+    console.log("connecteddd-----------------------------------")
+
     // Called when there's incoming data on the websocket for this channel
   }
 });
+

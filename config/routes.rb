@@ -4,12 +4,12 @@ Rails.application.routes.draw do
     sessions: 'users/sessions',
     registrations: 'users/registrations'
   }
-
+  
   root 'static_pages#home'
   get 'static_pages/help'
   get 'static_pages/about'
   get 'static_pages/contact'
-
+  
   resources :users do
     member do
       get :following, :followers
@@ -20,13 +20,15 @@ Rails.application.routes.draw do
   resources :topics do
     get '/page/:page', action: :index, on: :collection
   end
-
+  
   resources :profile
   resources :questions
   resources :answers
   resources :topic_relations, only: %i[create destroy]
   resources :relationships,   only: %i[create destroy]
   resources :rooms do
+    get 'rtm', action: :rtm, on: :collection
+    get 'rmm', action: :rmm, on: :collection
     resources :messages
   end
   post '/readcsv' => 'questions#readcsv'
@@ -49,5 +51,4 @@ Rails.application.routes.draw do
   mount Ckeditor::Engine => '/ckeditor'
   mount Stripe::Engine => '/stripe'
   mount ActionCable.server => '/cable'
-
 end

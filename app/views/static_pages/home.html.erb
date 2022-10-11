@@ -1,13 +1,10 @@
-       <% if user_signed_in? %>
+<% if user_signed_in? %>
 
-
-<%  @questions_group_by_topic.each do |topic, questions|    %>
-
-
+  <%  @questions_group_by_topic.each do |topic, questions|    %>
 
 <div class="card border-info" style="margin:25px ;">
   <h5 class="card-header border-info" style="text-align: left;">
-       =>   <%= link_to topic.name, topic_path(id: topic.id ) %>
+       =><%= link_to topic.name, topic_path(id: topic.id ) %>
   </h5>
     <% questions.each do |q| %>
   <div class="card-body ">
@@ -17,93 +14,84 @@
 
         <p style="color: gray; text-align: right;"> 
                  Question asked by.  
-                 	<% if q.user.avatar.attached? %>
-								 <%= image_tag q.user.avatar,style: "width:30px;",class: "img-fluid" %>
-								<% end %>
-                 <% if q.user.firstname.present? %>
-                   <%= q.user.firstname   %>
-                 <% else %>
-                    <%= q.user.email %>
-                 <% end %>
-                 </p>
-                   
-        <hr>
-
+            <% if q.user.avatar.attached? %>
+            <%= image_tag q.user.avatar,style: "width:30px;",class: "img-fluid" %>
+          <% end %>
+              <%= q.user.firstname || q.user&.email %>
+            </p><hr>
     </h5>
+
       <% if q.answers.any?  %>
-    <p class="card-text">
-    <%= q.answers.last.answer.html_safe %>
-                   <p style="color: gray; text-align: right;"> 
-                  <% if q.answers.last.user.avatar.attached? %>
-              <%= image_tag q.answers.last.user.avatar, style: "width:30px; height:30px;" %>
-                <% end %>
-                              <%= q.answers.last.user.firstname %>
-             <br> Posted <%= time_ago_in_words(q.answers.last.created_at) %> ago. 
-           </p>
-         </p>
-      <%= link_to "View more answers",question_path( id: q.id ),class: "btn btn-primary" %>
-
-    <% else %>
-      <p>No one has answered yet</p>
-      <%= link_to "Give answer",question_path( id: q.id )%>
-    <% end %>
-
-  </div>
-
+          <p class="card-text">
+          <%= q.answers.last.answer.html_safe %>
+          <p style="color: gray; text-align: right;"> 
+          <% if q.answers.last.user.avatar.attached? %>
+            <%= image_tag q.answers.last.user.avatar, style: "width:30px; height:30px;" %>
+          <% end %>
+              <%= q.answers.last.user.firstname %>
+          <br> Posted <%= time_ago_in_words(q.answers.last.created_at) %> ago. 
+          </p>
+          </p>
+          <%= link_to "View more answers",question_path( id: q.id ),class: "btn btn-primary" %>
+        <% else %>
+          <p>No one has answered yet</p>
+          <%= link_to "Give answer",question_path( id: q.id )%>
       <% end %>
-</div>
+
+    </div>
+    <% end %>
+  </div>
 
 <% end %>
   <div   class="digg_pagination" style="padding-left: 40%; background-color: #d6cbd3  ;">
-<%= will_paginate @questions %>
+<%#= will_paginate @questions_group_by_topic %>
 </div>
 
+<% else %>
 
-                              <% else %>
 <%  @questions_group_by_topic.each do |topic, questions|    %>
-
-<div class="card" style="margin:25px ;">
-  <h5 class="card-header" style="text-align: left;">
-       =><%=  topic.name %>
-  </h5>
-    <% questions.each do |q| %>
-  <div class="card-body">
-    <h5 class="card-title">
-
-      Q. 
-         <%#=  q.question  %></td>
-      <%= link_to q.question ,question_path( id: q.id ) %>
-      <hr>
-    </td>
+  <div class="card" style="margin:25px ;">
+    <h5 class="card-header" style="text-align: left;">
+        =><%=  topic.name %>
     </h5>
-      <% if q.answers.any?  %>
-    <p class="card-text">
-    <%= q.answers.last.answer.html_safe %>
-                   <p style="color: gray; text-align: right;"> 
-                  <% if q.answers.last.user.avatar.attached? %>
-              <%= image_tag q.answers.last.user.avatar, style: "width:30px; height:30px;" %>
-                <% end %>
+      <% questions.each do |q| %>
+    <div class="card-body">
+      <h5 class="card-title">
+
+        Q. 
+          <%#=  q.question  %></td>
+        <%= link_to q.question ,question_path( id: q.id ) %>
+        <hr>
+      </td>
+      </h5>
+        <% if q.answers.any?  %>
+      <p class="card-text">
+      <%= q.answers.last.answer.html_safe %>
+                    <p style="color: gray; text-align: right;"> 
+                    <% if q.answers.last.user.avatar.attached? %>
+                <%= image_tag q.answers.last.user.avatar, style: "width:30px; height:30px;" %>
+                  <% end %>
                               <%= q.answers.last.user.firstname %>
-             <br> Posted <%= time_ago_in_words(q.answers.last.created_at) %> ago. 
-           </p>
-         </p>
-      <%= link_to "View more answers",question_path( id: q.id ),class: "btn btn-primary" %>
+              <br> Posted <%= time_ago_in_words(q.answers.last.created_at) %> ago. 
+            </p>
+          </p>
+        <%= link_to "View more answers",question_path( id: q.id ),class: "btn btn-primary" %>
 
-    <% else %>
-      <p>No one has answered yet</p>
-      <%= link_to "Give answer",question_path( id: q.id )%>
-    <% end %>
+      <% else %>
+        <p>No one has answered yet</p>
+        <%= link_to "Give answer",question_path( id: q.id )%>
+      <% end %>
 
+    </div>
+
+        <hr><hr>
+        <% end %>
   </div>
 
-      <hr><hr>
-      <% end %>
-</div>
-
-<% end %>
-<div   class="digg_pagination" style="padding-left: 40%; background-color: #d6cbd3  ;">
-<%= will_paginate @questions %>
-</div>
+  <% end %>
+  <div   class="digg_pagination" style="padding-left: 40%; background-color: #d6cbd3  ;">
+  <%#= will_paginate @questions_group_by_topic %>
+  </div>
 
 <% end %>
    

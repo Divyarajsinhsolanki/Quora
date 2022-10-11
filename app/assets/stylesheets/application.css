@@ -105,18 +105,33 @@ border-bottom-right-radius: .3rem;
     overflow: hidden; 
 }
 
+.room-name{
+  margin:10px;
+  width: 80%;
+}
+
+
+#messages{
+  max-height: 40%;
+  overflow-y: auto;
+  height: 270px;
+ 
+}
+
+.message-room{
+  margin: 0 20%;
+}
+
 .message-box {
   width: fit-content;
-  max-width: 40%;
   padding: 5px;
   border-radius: 10px;
   margin-bottom: 10px;
-  background-color: #555555 ;
+  background-color: #db9292 ;
   padding: 10px
 } 
 .msg-form {
-  position: fixed;
-  bottom: 0;
+  bottom: 20px;
   width: 90%
 }
 .col-md-10 {

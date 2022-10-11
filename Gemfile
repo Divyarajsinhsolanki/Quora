@@ -22,7 +22,6 @@ gem 'jquery-rails'
 gem 'letter_opener'
 gem 'turbolinks_render'
 gem 'turbo-rails'
-gem 'coffee-rails'
 
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 1.1'
@@ -85,3 +84,6 @@ group :test do
   gem 'selenium-webdriver'
   gem 'webdrivers'
 end
+
+gem "kredis", "~> 1.3"
+gem "cubism", "~> 0.1.0.pre13"

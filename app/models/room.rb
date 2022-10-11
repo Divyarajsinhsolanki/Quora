@@ -1,4 +1,7 @@
 class Room < ApplicationRecord
     scope :public_rooms, -> { where(is_private: false) }
-    has_many :messages
+    after_create_commit {broadcast_append_to "rooms"}
+    has_many :messages, dependent: :destroy
+    validates :name, presence: true
+
 end
