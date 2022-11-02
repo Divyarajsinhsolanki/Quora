@@ -1,6 +1,9 @@
-import { Controller } from  "@hotwired/stimulus"      // "stimulus"
+import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
+  connect() {
+		console.log('connected resert');
+	}
   reset() {
     this.element.reset()
   }

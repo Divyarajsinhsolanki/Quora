@@ -3,6 +3,7 @@ class MessagesController < ApplicationController
     @current_user = current_user
     @message = @current_user.messages.create(content: msg_params[:content], room_id: params[:room_id])
     @tmping = []
+    ActionCable.server.broadcast "room_channel",{message: ""} 
   end
 
   def index

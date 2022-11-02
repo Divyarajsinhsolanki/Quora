@@ -110,14 +110,6 @@ border-bottom-right-radius: .3rem;
   width: 80%;
 }
 
-
-#messages{
-  max-height: 40%;
-  overflow-y: auto;
-  height: 270px;
- 
-}
-
 .message-room{
   margin: 0 20%;
 }

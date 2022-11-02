@@ -1,5 +1,4 @@
 class RoomsController < ApplicationController
-
   before_action :set_room, only: %i[ show ]
 
   def show
@@ -19,7 +18,6 @@ class RoomsController < ApplicationController
   end
 
   def rmm 
-    p "--------------------------------"
     Msg.destroy_all
   end
 

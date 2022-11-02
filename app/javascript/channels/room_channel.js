@@ -1,8 +1,8 @@
 import consumer from "channels/consumer"
 
-consumer.subscriptions.create("TypingChannel", {
+consumer.subscriptions.create("RoomChannel", {
   connected() {
-    console.log("connectedasdasdasdasddd-----------------------------------")
+    console.log("online users")
     // Called when the subscription is ready for use on the server
   },
 
@@ -11,11 +11,8 @@ consumer.subscriptions.create("TypingChannel", {
   },
 
   received(data) {
-    wall = document.getElementById('typing');
-    wall.innerHTML +=  "hhhhhhhhhhh";
-    console.log("connecteddd-----------------------------------")
+    window.scrollTo(0,document.body.scrollHeight);
 
     // Called when there's incoming data on the websocket for this channel
   }
 });
-

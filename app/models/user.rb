@@ -54,6 +54,5 @@ class User < ApplicationRecord
   def following?(other_user)
     following.include?(other_user)
   end
-  include Cubism::User
 
 end
