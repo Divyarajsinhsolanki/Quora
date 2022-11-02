@@ -81,4 +81,4 @@ test:
 #
 production:
   <<: *default
-  database: quora_production
+  database: quora_production_second
