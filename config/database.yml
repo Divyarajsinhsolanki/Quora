@@ -82,5 +82,3 @@ test:
 production:
   <<: *default
   database: quora_production
-  username: quora
-  password: <%= ENV["QUORA_DATABASE_PASSWORD"] %>
