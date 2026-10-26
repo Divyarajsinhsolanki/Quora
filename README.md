@@ -69,3 +69,9 @@ GitHub Actions runs the existing Rails test suite on pushes and pull requests us
 ## Licence
 
 No licence grant is currently included. Contact the owner before reuse or redistribution.
+
+## CI baseline — 2026-10-26
+
+The workflow installs dependencies and prepares the database, then Rails test loading stops because `app/models/pract.rb` does not define `Pract` (Zeitwerk autoload error). This existing application issue needs repair before a green test baseline.
+
+[Inspected test run](https://github.com/Divyarajsinhsolanki/Quora/actions/runs/40307440534). Adding CI does not imply these legacy projects are production-ready.
