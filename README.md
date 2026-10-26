@@ -12,6 +12,13 @@ A Quora-inspired question-and-answer application built with Ruby on Rails and Po
 - Chat rooms and messages
 - CKEditor rich-text editing
 
+## Screenshots: home-template previews
+
+These images render the actual `app/views/static_pages/home.html.erb` with synthetic questions, answers and a demo member. They show the guest/member content states, not a live deployment or verified end-to-end session. The surrounding application navigation is omitted.
+
+![Guest home template with sample questions and answers](docs/screenshots/guest-home.png)
+![Member home template with topic and author links](docs/screenshots/member-home.png)
+
 ## Requirements
 
 - Ruby **3.0.0** and Bundler **2.3.22**, matching the Gemfile and lockfile
