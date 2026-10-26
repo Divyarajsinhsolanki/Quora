@@ -29,8 +29,8 @@ module Quora
     config.assets_plugins = ['image']
 
     config.stripe.auto_mount = false
-    config.stripe.secret_key = 'sk_test_51LI9drSFHL5joWv1wQ1gReOgUbLd9PDwzgzF8gCEvFYeuqolHXxlJs62fDex7IYHrNbPbgNY9GAfZ2jAVzTTwRkD0037VUCxfl'
-    config.stripe.publishable_key = 'pk_test_51LI9drSFHL5joWv1wNMMjJoxEMX1wxbJ1MEQiCdZBigcmXBx6P7dzlF5YDMHxnBrY3DoNgbrX8xW6npkVbylCJjz00hNAzunDJ'
+    config.stripe.secret_key = ENV["STRIPE_SECRET_KEY"]
+    config.stripe.publishable_key = ENV["STRIPE_PUBLISHABLE_KEY"]
 
     config.active_storage.variant_processor = :mini_magick
   end
